@@ -43,7 +43,9 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; overflow-x: hidden; }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; transition: background 0.3s, color 0.3s; }
+  img, video, iframe { max-width: 100%; }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -80,7 +82,7 @@
   /* HERO */
   .hero-section { max-width: 1440px; margin: 0 auto; padding: 32px 24px 0; }
   .hero-label { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--silver); margin-bottom: 8px; }
-  .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(36px, 5vw, 64px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 16px; }
+  .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(32px, 6vw, 64px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 16px; }
   .hero-title span { background: var(--chrome); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .hero-sub { font-size: 16px; color: var(--text2); max-width: 480px; line-height: 1.6; margin-bottom: 28px; }
 
@@ -133,12 +135,12 @@
   .ai-quick-title { font-size: 12px; font-weight: 600; }
   .ai-quick-sub { font-size: 11px; color: var(--text3); }
   .ai-input-row { display: flex; gap: 8px; align-items: center; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 4px 4px 4px 12px; }
-  .ai-input { flex: 1; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text); outline: none; }
+  .ai-input { flex: 1; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text); outline: none; min-width: 0; }
   .ai-input::placeholder { color: var(--text3); }
   .ai-input-icons { display: flex; gap: 4px; align-items: center; }
   .ai-icon-btn { width: 28px; height: 28px; border-radius: 7px; border: none; background: transparent; color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all 0.2s; }
   .ai-icon-btn:hover { background: var(--border); }
-  .ai-send { background: var(--cta); color: white; border: none; border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .ai-send { background: var(--cta); color: white; border: none; border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; white-space: nowrap; }
   .ai-send:hover { background: var(--cta-hover); }
   .ai-messages { max-height: 200px; overflow-y: auto; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px; }
   .ai-msg { padding: 8px 12px; border-radius: 10px; font-size: 13px; line-height: 1.5; max-width: 90%; }
@@ -175,12 +177,12 @@
   .pay-title { font-size: 13px; font-weight: 600; }
   .pay-sub { font-size: 11px; color: var(--text3); }
   .pay-method { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg); border-radius: 12px; border: 1px solid var(--border); }
-  .card-icon { width: 40px; height: 26px; background: linear-gradient(135deg, #2c2c2c, #555); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .card-icon { width: 40px; height: 26px; background: linear-gradient(135deg, #2c2c2c, #555); border-radius: 5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .card-icon::after { content: ''; width: 24px; height: 8px; border-radius: 2px; background: linear-gradient(90deg, #aaa, #ddd); }
-  .pay-info { flex: 1; }
+  .pay-info { flex: 1; min-width: 0; }
   .pay-type { font-size: 13px; font-weight: 600; }
   .pay-num { font-size: 11px; color: var(--text3); }
-  .pay-radio { width: 18px; height: 18px; border-radius: 50%; background: var(--cta); border: 3px solid white; box-shadow: 0 0 0 2px var(--cta); }
+  .pay-radio { width: 18px; height: 18px; border-radius: 50%; background: var(--cta); border: 3px solid white; box-shadow: 0 0 0 2px var(--cta); flex-shrink: 0; }
 
   /* Stats */
   .stats-strip { max-width: 1440px; margin: 0 auto; padding: 0 24px 32px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -193,14 +195,14 @@
   .section { max-width: 1440px; margin: 0 auto; padding: 48px 24px; }
   .section-head { margin-bottom: 32px; }
   .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--silver); margin-bottom: 8px; }
-  .section-title { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(24px, 4vw, 32px); font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
   .section-sub { font-size: 15px; color: var(--text2); }
 
   /* Search */
   .search-wrap { display: flex; gap: 10px; align-items: center; margin-bottom: 24px; flex-wrap: wrap; }
   .search-box { flex: 1; min-width: 200px; display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0 16px; height: 44px; }
   .search-box svg { color: var(--text3); flex-shrink: 0; }
-  .search-box input { flex: 1; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; }
+  .search-box input { flex: 1; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; min-width: 0; }
   .search-box input::placeholder { color: var(--text3); }
   .filter-sel { height: 44px; padding: 0 14px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text); cursor: pointer; outline: none; appearance: none; min-width: 130px; }
   .sort-btn { height: 44px; padding: 0 16px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--text); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
@@ -218,7 +220,7 @@
   .car-card-body { padding: 16px 20px 20px; }
   .car-card-make { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); font-weight: 600; margin-bottom: 4px; }
   .car-card-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; }
-  .car-card-specs { display: flex; gap: 12px; margin-bottom: 16px; }
+  .car-card-specs { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
   .car-spec-pill { display: flex; align-items: center; gap: 4px; padding: 4px 8px; background: var(--bg); border-radius: 6px; border: 1px solid var(--border); font-size: 11px; color: var(--text2); font-weight: 500; }
   .car-card-footer { display: flex; align-items: center; justify-content: space-between; }
   .car-card-price { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; }
@@ -235,341 +237,87 @@
   .why-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
   .why-desc { font-size: 13px; color: var(--text2); line-height: 1.5; }
 
-   /* ─── ABOUT PAGE ─── */
-  .about-page { padding: 100px 40px 60px; max-width: 1200px; margin: 0 auto; }
-  .about-hero {
-    text-align: center; margin-bottom: 80px;
-  }
-  .about-eyebrow {
-    display: inline-block;
-    font-size: 11px; font-weight: 600;
-    color: var(--accent); text-transform: uppercase;
-    letter-spacing: 2px;
-    background: var(--accent-pale);
-    padding: 3px 5px; border-radius: 100px;
-    margin-bottom: 50px;
-  } 
-  .about-headline {
-    font-family: 'Syne', sans-serif;
-    font-size: 45px; font-weight: 710;
-    letter-spacing: -2px; line-height: 1.05;
-    max-width: 900px; margin: 0 auto 15px;
-  }
-  .about-desc { font-size: 16px; color: var(--muted); max-width: 900px; margin: 0 auto; line-height: 1.6; }
+  /* ABOUT PAGE */
+  .about-page { padding: 60px 24px 60px; max-width: 1200px; margin: 0 auto; }
+  .about-hero { text-align: center; margin-bottom: 60px; }
+  .about-eyebrow { display: inline-block; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; background: var(--accent-pale); padding: 3px 5px; border-radius: 100px; margin-bottom: 50px; }
+  .about-headline { font-family: 'Syne', sans-serif; font-size: clamp(25px, 3vw, 40px); font-weight: 710; letter-spacing: -2px; line-height: 1.05; max-width: 900px; margin: 0 auto 15px; }
+  .about-desc { font-size: 16px; color: var(--text2); max-width: 900px; margin: 0 auto; line-height: 1.6; }
 
-  /* Meet The Team */
+  /* Team */
   .team-section { }
-  .section-header {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 40px;
-  }
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 32px; font-weight: 800; letter-spacing: -1px;
-  }
-  .section-subtitle { font-size: 14px; color: var(--muted); margin-top: 6px; }
-  .view-all-link {
-    font-size: 13px; color: var(--accent); text-decoration: none;
-    font-weight: 600; display: flex; align-items: center; gap: 4px;
-    cursor: pointer;
-  }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-
-  .team-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
-    position: relative;
-  }
-  .team-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--card-shadow-hover);
-    border-color: var(--accent-light);
-  }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 12px; }
+  .section-subtitle { font-size: 14px; color: var(--text2); margin-top: 6px; }
+  .view-all-link { font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 4px; cursor: pointer; white-space: nowrap; }
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .team-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; cursor: pointer; transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1); position: relative; }
+  .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
   .team-card:nth-child(2) { margin-top: 24px; }
   .team-card:nth-child(4) { margin-top: 16px; }
-
-  .team-card-photo {
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .team-card-photo { height: 200px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
   .team-card:nth-child(1) .team-card-photo { background: linear-gradient(135deg, #d4edda, #a8dadc); }
   .team-card:nth-child(2) .team-card-photo { background: linear-gradient(135deg, #fce8d0, #f4a261); }
   .team-card:nth-child(3) .team-card-photo { background: linear-gradient(135deg, #ddd9f0, #a8a0d4); }
   .team-card:nth-child(4) .team-card-photo { background: linear-gradient(135deg, #d0ebf4, #74c0e0); }
-
-  .team-avatar-large {
-    width: 90px; height: 90px; border-radius: 50%;
-    border: 4px solid rgba(255,255,255,0.8);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-size: 32px; font-weight: 800;
-    color: rgba(0,0,0,0.35);
-    background: rgba(255,255,255,0.5);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    transition: transform 0.3s;
-  }
+  .team-avatar-large { width: 90px; height: 90px; border-radius: 50%; border: 4px solid rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; color: rgba(0,0,0,0.35); background: rgba(255,255,255,0.5); backdrop-filter: blur(8px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); transition: transform 0.3s; }
   .team-card:hover .team-avatar-large { transform: scale(1.08); }
-
-  .team-card-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.4));
-    opacity: 0; transition: opacity 0.3s;
-  }
+  .team-card-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.4)); opacity: 0; transition: opacity 0.3s; }
   .team-card:hover .team-card-overlay { opacity: 1; }
-
-  .team-socials {
-    position: absolute; bottom: 12px; left: 0; right: 0;
-    display: flex; justify-content: center; gap: 8px;
-    opacity: 0; transform: translateY(8px);
-    transition: all 0.3s;
-  }
+  .team-socials { position: absolute; bottom: 12px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; opacity: 0; transform: translateY(8px); transition: all 0.3s; }
   .team-card:hover .team-socials { opacity: 1; transform: translateY(0); }
-  .team-social-btn {
-    width: 28px; height: 28px; border-radius: 8px;
-    background: rgba(255,255,255,0.9);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; cursor: pointer;
-    transition: all 0.2s;
-  }
+  .team-social-btn { width: 28px; height: 28px; border-radius: 8px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; font-size: 12px; cursor: pointer; transition: all 0.2s; }
   .team-social-btn:hover { background: var(--accent); color: #fff; transform: scale(1.1); }
-
-  .team-card-info {
-    padding: 16px;
-  }
-  .team-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 16px; font-weight: 700;
-    letter-spacing: -0.3px;
-  }
-  .team-role {
-    font-size: 12px; color: var(--accent); font-weight: 500;
-    margin-top: 2px;
-  }
-  .team-bio {
-    font-size: 12px; color: var(--muted); margin-top: 8px;
-    line-height: 1.5;
-    display: -webkit-box; -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical; overflow: hidden;
-  }
-  .team-tags {
-    display: flex; gap: 4px; flex-wrap: wrap; margin-top: 10px;
-  }
-  .team-tag {
-    font-size: 10px; color: var(--muted);
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: 100px; padding: 2px 8px; font-weight: 500;
-  }
-  .team-card:hover .team-tag { border-color: var(--accent-pale); background: var(--accent-pale); color: var(--accent); }
-
-  /* Featured team member */
-  .team-featured {
-    grid-column: 1 / -1;
-    display: flex; gap: 0;
-    background: linear-gradient(135deg, #1a1a18, #2d3748);
-    border-radius: 20px;
-    overflow: hidden;
-    color: #fff; border: none;
-    margin-bottom: 0;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
+  .team-card-info { padding: 16px; }
+  .team-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+  .team-role { font-size: 12px; color: var(--accent); font-weight: 500; margin-top: 2px; }
+  .team-bio { font-size: 12px; color: var(--text2); margin-top: 8px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .team-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 10px; }
+  .team-tag { font-size: 10px; color: var(--text2); background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 2px 8px; font-weight: 500; }
+  .team-card:hover .team-tag { border-color: var(--border); background: var(--bg2); color: var(--accent); }
+  .team-featured { grid-column: 1 / -1; display: flex; gap: 0; background: linear-gradient(135deg, #1a1a18, #2d3748); border-radius: 20px; overflow: hidden; color: #fff; border: none; margin-bottom: 0; cursor: pointer; transition: all 0.3s; }
   .team-featured:hover { transform: scale(1.01); box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
-  .team-featured-photo {
-    width: 240px; flex-shrink: 0;
-    background: linear-gradient(135deg, #2d6a4f, #40916c);
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-  }
-  .team-featured-photo::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.15), transparent);
-  }
-  .team-featured-avatar {
-    width: 100px; height: 100px; border-radius: 50%;
-    background: rgba(255,255,255,0.2); border: 3px solid rgba(255,255,255,0.4);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800;
-    color: rgba(255,255,255,0.7);
-    backdrop-filter: blur(4px);
-  }
+  .team-featured-photo { width: 240px; flex-shrink: 0; background: linear-gradient(135deg, #2d6a4f, #40916c); display: flex; align-items: center; justify-content: center; position: relative; }
+  .team-featured-photo::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.15), transparent); }
+  .team-featured-avatar { width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.2); border: 3px solid rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; color: rgba(255,255,255,0.7); backdrop-filter: blur(4px); }
   .team-featured-content { padding: 32px; display: flex; flex-direction: column; justify-content: center; }
-  .team-featured-eyebrow {
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--accent-light); font-weight: 600; margin-bottom: 8px;
-  }
-  .team-featured-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 28px; font-weight: 800; letter-spacing: -0.5px;
-  }
+  .team-featured-eyebrow { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #a0e0b0; font-weight: 600; margin-bottom: 8px; }
+  .team-featured-name { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
   .team-featured-role { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 4px; }
   .team-featured-bio { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 12px; line-height: 1.6; max-width: 500px; }
-  .team-featured-stats {
-    display: flex; gap: 24px; margin-top: 20px;
-  }
-  .team-stat { }
-  .team-stat-num { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--accent-light); }
+  .team-featured-stats { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .team-stat-num { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: #a0e0b0; }
   .team-stat-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
 
-  /* Values section */
-/* =========================
-   VALUES – RESPONSIVE
-========================= */
+  /* Values */
+  .values-section { margin-top: 60px; }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+  .value-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; }
+  .value-icon { font-size: 28px; margin-bottom: 12px; }
+  .value-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .value-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
 
-/* Default (Desktop ≥1200px)
-   → 3 columns (your original design stays intact) */
-.values-section {
-  margin-top: 60px;
-}
-
-/* Tablet (≤1024px)
-   → 2 columns */
-@media (max-width: 1024px) {
-  .values-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Mobile (≤768px)
-   → 1 column */
-@media (max-width: 768px) {
-  .values-section {
-    margin-top: 40px;
-  }
-
-  .values-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .value-card {
-    padding: 20px;
-  }
-
-  .value-title {
-    font-size: 16px;
-  }
-
-  .value-desc {
-    font-size: 13px;
-    line-height: 1.7;
-  }
-}
-
-/* Small mobile (≤480px)
-   → tighter spacing, perfect readability */
-@media (max-width: 480px) {
-  .values-grid {
-    gap: 12px;
-  }
-
-  .value-card {
-    padding: 18px;
-    border-radius: 14px;
-  }
-
-  .value-icon {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-
-  .value-title {
-    font-size: 15px;
-  }
-
-  .value-desc {
-    font-size: 12.5px;
-  }
-}
-
-  /* Toast */
-  .toast {
-    position: fixed; bottom: 24px; right: 24px;
-    background: var(--text); color: #fff;
-    padding: 12px 20px; border-radius: 12px;
-    font-size: 13px; font-weight: 500;
-    opacity: 0; transform: translateY(10px);
-    transition: all 0.3s;
-    z-index: 200;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  }
-  .toast.show { opacity: 1; transform: translateY(0); }
-
-  /* Responsive helpers */
-  @media (max-width: 900px) {
-    .home-layout { grid-template-columns: 1fr; }
-    .ai-panel { grid-row: auto; }
-    .bottom-cards { grid-template-columns: 1fr; }
-    .team-grid { grid-template-columns: 1fr 1fr; }
-    .team-card:nth-child(2), .team-card:nth-child(4) { margin-top: 0; }
-    .team-featured { flex-direction: column; }
-    .team-featured-photo { width: 100%; height: 140px; }
-  }
-
+  /* Services */
+  .page-hero { padding: 40px 24px 0; }
+  .page-hero-inner { max-width: 1440px; margin: 0 auto; text-align: center; }
   .services-list { display: flex; flex-direction: column; gap: 0; }
   .service-item { display: grid; grid-template-columns: 80px 1fr; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--border); }
   .service-num { font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; color: var(--border); line-height: 1; }
   .service-name { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 10px; }
-  .service-desc { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 14px; padding: 3px;}
+  .service-desc { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 14px; }
   .service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag { padding: 4px 10px; background: var(--silver-light); color: var(--text2); border-radius: 20px; font-size: 11px; font-weight: 600; border: 1px solid var(--border); }
-.service-eyebrow {
-    display: inline-block;
-    font-size: 11px; font-weight: 600;
-    color: var(--accent); text-transform: uppercase;
-    letter-spacing: 2px;
-    background: var(--accent-pale);
-    padding: 6px 14px; border-radius: 100px;
-    margin-bottom: 50px;
-  }
-  .service-headline {
-    font-family: 'Syne', sans-serif;
-    font-size: 45px; font-weight: 770;
-    letter-spacing: -2px; line-height: 1.05;
-    max-width: 900px; margin: 0 auto 10px;
-    text-align: center;
-  }
-  .service-desc { font-size: 16px; color: var(--muted); max-width: 900px; margin: 0 auto; line-height: 1.6; text-align: center;}
+  .service-headline { font-family: 'Syne', sans-serif; font-size: clamp(25px, 3vw, 40px); font-weight: 770; letter-spacing: -2px; line-height: 1.05; max-width: 900px; margin: 0 auto 10px; text-align: center; }
 
   /* Contact */
-    .page-contact { padding: 100px 40px 60px; max-width: 1200px; margin: 0 auto; }
-  .hero-contact {
-    text-align: center; margin-bottom: 80px;
-  }
+  .page-contact { padding: 40px 24px 60px; max-width: 1200px; margin: 0 auto; }
+  .hero-contact { text-align: center; margin-bottom: 60px; }
   .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; }
   .contact-info h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 20px; }
   .contact-detail { padding: 14px 0; border-bottom: 1px solid var(--border); }
   .contact-detail-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); font-weight: 600; margin-bottom: 4px; }
   .contact-detail-val { font-size: 14px; color: var(--text); line-height: 1.5; }
-  .contact-desc { font-size: 16px; color: var(--muted); max-width: 700px; margin: 0 auto; line-height: 1.6; text-align: center; padding: 3px;}
-  .contact-eyebrow {
-    display: inline-block;
-    font-size: 11px; font-weight: 700;
-    color: var(--accent); text-transform: uppercase;
-    letter-spacing: -2px;
-    background: var(--accent-pale);
-    padding: 3px 5px; border-radius: 100px;
-    margin-bottom: 80px;
-
-  } 
-  .contact-headline {
-    font-family: 'Syne', sans-serif;
-    font-size: 45px; font-weight: 710;
-    letter-spacing: -2px; line-height: 1.05;
-    max-width: 900px; margin: 0 auto 15px;
-    text-align: center;
-  }
+  .contact-desc { font-size: 16px; color: var(--text2); max-width: 700px; margin: 0 auto; line-height: 1.6; text-align: center; }
+  .contact-headline { font-family: 'Syne', sans-serif; font-size: clamp(25px, 3vw, 40px); font-weight: 710; letter-spacing: -2px; line-height: 1.05; max-width: 900px; margin: 0 auto 15px; text-align: center; }
   .hours-grid { display: flex; flex-direction: column; gap: 6px; }
   .hour-row { display: flex; justify-content: space-between; font-size: 13px; }
   .hour-day { color: var(--text2); }
@@ -583,9 +331,6 @@
   .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--silver); }
   .form-textarea { min-height: 100px; resize: vertical; }
   .form-success { display: none; margin-top: 12px; padding: 12px 16px; background: var(--silver-light); color: var(--text2); border-radius: 10px; font-size: 13px; font-weight: 600; border: 1px solid var(--border); }
-
- 
-  /* Google Map */
   .map-embed { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
   .map-embed iframe { display: block; width: 100%; height: 380px; border: none; }
 
@@ -596,7 +341,7 @@
   @keyframes modalIn { from { opacity:0; transform: translateY(20px) scale(0.97); } to { opacity:1; transform: translateY(0) scale(1); } }
   .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--border); }
   .modal-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; }
-  .modal-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg); font-size: 18px; color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .modal-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg); font-size: 18px; color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .modal-body { padding: 24px; }
   .modal-img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; }
   .modal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
@@ -607,10 +352,9 @@
   .modal-desc { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 20px; }
   .modal-actions { display: flex; gap: 10px; margin-bottom: 24px; }
 
-  /* Finance Calculator */
+  /* Finance Calc */
   .finance-calc { background: var(--bg); border-radius: 14px; border: 1px solid var(--border); padding: 20px; }
   .finance-calc-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-  .finance-calc-title span { font-size: 18px; }
   .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
   .calc-field { display: flex; flex-direction: column; gap: 5px; }
   .calc-label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
@@ -627,6 +371,10 @@
   .calc-result-val { font-weight: 600; }
   .calc-monthly { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--text); }
   .calc-note { font-size: 11px; color: var(--text3); margin-top: 8px; }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--text); color: #fff; padding: 12px 20px; border-radius: 12px; font-size: 13px; font-weight: 500; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+  .toast.show { opacity: 1; transform: translateY(0); }
 
   /* Footer */
   footer { background: var(--card); border-top: 1px solid var(--border); padding: 48px 24px 24px; margin-top: 64px; }
@@ -661,332 +409,194 @@
   .mobile-menu a { font-size: 20px; font-weight: 600; color: var(--text); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--border); }
   .mob-actions { display: flex; gap: 10px; margin-top: 24px; }
 
+  /* =============================================
+     MOBILE IMPROVEMENTS — the new stuff
+  ============================================= */
 
-
-  /* =========================
-   GLOBAL RESET & SAFETY
-========================= */
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-}
-
-img, video, iframe {
-  max-width: 100%;
-  height: auto;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* =========================
-   TYPOGRAPHY SCALING
-========================= */
-.hero-title {
-  font-size: clamp(32px, 6vw, 64px);
-}
-.section-title {
-  font-size: clamp(24px, 4vw, 32px);
-}
-.about-headline {
-  font-size: clamp(25px, 3vw, 40px);
-}
-
-/* service */
-/* .hero-title {
-  font-size: clamp(32px, 6vw, 64px);
-} */
-/* .section-title {
-  font-size: clamp(24px, 4.5vw, 32px);
-} */
-.service-headline {
-  font-size: clamp(25px, 3vw, 40px);
-}
-/* contact */
-/* .hero-title {
-  font-size: clamp(32px, 6vw, 64px);
-} */
-/* .section-title {
-  font-size: clamp(24px, 4vw, 32px);
-} */
-.contact-headline {
-  font-size: clamp(25px, 3vw, 40px);
-}
-
-/* =========================
-   NAV RESPONSIVE
-========================= */
-@media (max-width: 1024px) {
-  nav {
-    padding: 0 16px;
-  }
-}
-
+  /* Hide location badge on mobile to save space */
 @media (max-width: 768px) {
-  .nav-inner {
-    height: 60px;
-  }
-  .nav-links,
-  .nav-tabs {
-    display: none;
-  }
-  .hamburger {
-    display: flex;
-  }
+  .location-badge { display: none; }
+  .nav-inner { gap: 8px; }
+  .nav-tabs { display: flex; padding: 3px; }
+  .nav-tab { padding: 5px 12px; font-size: 13px; }
+  .hamburger { display: flex; }
+  .nav-links { display: none; }
+  .nav-inner { height: 60px; }
+  nav { padding: 0 16px; }
 }
 
-/* =========================
-   HERO SECTION
-========================= */
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 24px 16px 0;
-  }
-  .hero-sub {
-    max-width: 100%;
-  }
-}
-
-/* =========================
-   DASHBOARD LAYOUT
-========================= */
-@media (max-width: 1200px) {
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
-  .dashboard-side {
-    grid-column: 1;
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .dashboard {
-    padding: 16px;
-  }
-  .dashboard-side {
-    grid-template-columns: 1fr;
-  }
-  .dashboard-bottom {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================
-   CAR SHOWCASE
-========================= */
-@media (max-width: 900px) {
-  .car-showcase {
-    padding: 20px;
-    min-height: auto;
-  }
-  .car-image-wrap {
-    position: relative;
-    width: 100%;
-    right: 0;
-    top: auto;
-    transform: none;
-    margin-top: 20px;
-  }
-}
-
-/* =========================
-   STATS STRIP
-========================= */
-@media (max-width: 900px) {
-  .stats-strip {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .stats-strip {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================
-   CAR GRID
-========================= */
-@media (max-width: 768px) {
-  .car-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================
-   WHY SECTION
-========================= */
-@media (max-width: 1024px) {
-  .why-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .why-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================
-   ABOUT + TEAM
-========================= */
-@media (max-width: 1024px) {
-  .team-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .about-page {
-    padding: 80px 20px 40px;
-  }
-  .team-grid {
-    grid-template-columns: 1fr;
-  }
-  .team-featured {
-    flex-direction: column;
-  }
-  .team-featured-photo {
-    width: 100%;
-    height: 160px;
-  }
-}
-
-/* =========================
-   SERVICES
-========================= */
-@media (max-width: 768px) {
-  .service-item {
-    grid-template-columns: 1fr;
-  }
-  .service-num {
-    font-size: 28px;
-  }
-}
-
-/* =========================
-   CONTACT
-========================= */
-@media (max-width: 900px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 768px) {
-  .contact-headline,
-  .page-h {
-    font-size: 38px;
-    letter-spacing: -1px;
-  }
-}
-
-@media (max-width: 480px) {
-  .contact-headline,
-  .page-h {
-    font-size: 30px;
-  }
-}
-/* =========================
-   MODAL
-========================= */
-@media (max-width: 768px) {
-  .modal {
-    max-width: 100%;
-  }
-  .modal-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .modal-grid {
-    grid-template-columns: 1fr;
-  }
-  .modal-actions {
-    flex-direction: column;
-  }
-}
-
-/* =========================
-   FINANCE CALCULATOR
-========================= */
-@media (max-width: 768px) {
-  .calc-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================
-   FOOTER
-========================= */
-@media (max-width: 900px) {
-  .footer-top {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer-top {
-    grid-template-columns: 1fr;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
-  }
-}
-
-/* =========================
-   WHATSAPP FLOAT 
-========================= */
-
-@media (max-width: 480px) {
-  .wa-float span {
-    display: none;
-  }
-  .wa-float {
-    padding: 12px;
-    right: 16px;
-    bottom: 16px;
-  }
-}
-  /* Responsive */
-  @media (max-width: 1100px) {
-    .dashboard { grid-template-columns: 1fr; }
-    .dashboard-side { grid-column: 1; grid-row: auto; display: grid; grid-template-columns: 1fr 1fr; }
-    .why-grid { grid-template-columns: 1fr 1fr; }
-    .team-grid { grid-template-columns: 1fr 1fr; }
-    .footer-top { grid-template-columns: 1fr 1fr; }
-  }
+  /* ── HERO ── */
   @media (max-width: 768px) {
-    .nav-links, .nav-tabs { display: none; }
-    .hamburger { display: flex; }
+    .hero-section { padding: 28px 16px 0; }
+    .hero-title { letter-spacing: -1px; margin-bottom: 12px; }
+    .hero-sub { font-size: 15px; max-width: 100%; margin-bottom: 20px; }
+    .hero-label { font-size: 11px; }
+  }
+
+  /* ── DASHBOARD: full single-column on mobile ── */
+  @media (max-width: 1200px) {
+    .dashboard { grid-template-columns: 1fr; padding: 16px 16px 32px; }
+    .dashboard-side { grid-column: 1; grid-row: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .dashboard-bottom { grid-column: 1; grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  @media (max-width: 900px) {
+    /* Showcase: static image below content */
+    .car-showcase { padding: 20px; min-height: unset; }
+    .car-showcase::before { display: none; }
+    .car-image-wrap {
+      position: relative;
+      right: auto; top: auto;
+      transform: none;
+      width: 100%;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .car-image-wrap img { max-height: 200px; width: auto; max-width: 100%; }
+    .car-name { font-size: 26px; }
+    .car-price { font-size: 24px; }
+    .car-actions { flex-wrap: wrap; }
+    .car-actions .btn-primary,
+    .car-actions .btn-ghost { flex: 1; min-width: 120px; justify-content: center; }
+    .car-specs-row { gap: 12px; flex-wrap: wrap; }
+
     .dashboard-side { grid-template-columns: 1fr; }
-    .dashboard-bottom { grid-template-columns: 1fr; }
-    .stats-strip { grid-template-columns: 1fr 1fr; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; }
-    .modal-grid { grid-template-columns: 1fr 1fr; }
-    .calc-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr; gap: 24px; }
-    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-    .car-image-wrap { width: 60%; right: -30px; }
-    .service-item { grid-template-columns: 1fr; gap: 8px; }
-    .service-num { font-size: 24px; }
+    .dashboard-bottom { grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .stat-card { padding: 16px; }
+    .stat-num { font-size: 24px; }
+    .stat-label { font-size: 11px; }
+  }
+
+  @media (max-width: 600px) {
+    .dashboard { padding: 12px 12px 24px; gap: 12px; }
+    .dashboard-bottom { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .stat-card { padding: 14px 12px; }
+    .stat-num { font-size: 22px; }
+
+    /* Date + location side by side */
+    .dashboard-side > div:last-of-type { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* Payment card: tighten */
+    .pay-method { flex-wrap: nowrap; gap: 8px; }
+    .pay-num { font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  }
+
+  @media (max-width: 480px) {
+    .dashboard-bottom { grid-template-columns: 1fr 1fr 1fr; }
+    .stat-card { padding: 12px 10px; }
+    .stat-num { font-size: 20px; }
+    .stat-label { font-size: 10px; }
+    .car-name { font-size: 22px; }
+  }
+
+  /* ── AI CARD on mobile ── */
+  @media (max-width: 600px) {
+    .ai-quick-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .ai-quick { padding: 8px 10px; }
+    .ai-icon-btn { display: none; } /* hide mic/clip on very small */
+  }
+
+  /* ── SECTION & SEARCH ── */
+  @media (max-width: 768px) {
+    .section { padding: 32px 16px; }
+    .search-wrap { gap: 8px; }
+    .search-box { min-width: unset; }
+    .filter-sel { min-width: unset; flex: 1; }
+    .sort-btn { width: 100%; }
+    .car-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .search-wrap { flex-direction: column; align-items: stretch; }
+    .search-box { width: 100%; }
+    .filter-sel { width: 100%; }
+    .sort-btn { width: 100%; }
+  }
+
+  /* ── WHY CARDS ── */
+  @media (max-width: 1024px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .why-grid { grid-template-columns: 1fr; gap: 10px; } .why-section { padding: 40px 16px; } }
+
+  /* ── ABOUT + TEAM ── */
+  @media (max-width: 1024px) { .team-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 768px) {
+    .about-page { padding: 40px 16px 40px; }
+    .about-hero { margin-bottom: 40px; }
+    .about-headline { letter-spacing: -1px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .team-card:nth-child(2), .team-card:nth-child(4) { margin-top: 0; }
+    .team-featured { flex-direction: column; }
+    .team-featured-photo { width: 100%; height: 140px; }
+    .team-featured-content { padding: 20px; }
+    .team-featured-name { font-size: 22px; }
+    .section-header { margin-bottom: 24px; }
+    .values-grid { grid-template-columns: 1fr; gap: 10px; }
+    .values-section { margin-top: 40px; }
+  }
+
+  /* ── SERVICES ── */
+  @media (max-width: 768px) {
+    .page-hero { padding: 28px 16px 0; }
+    .service-item { grid-template-columns: 40px 1fr; gap: 12px; padding: 24px 0; }
+    .service-num { font-size: 22px; }
+    .service-name { font-size: 17px; }
+    .service-desc { font-size: 13px; }
   }
   @media (max-width: 480px) {
-    .stats-strip { grid-template-columns: 1fr 1fr; }
-    .why-grid { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    .modal-actions { flex-direction: column; }
-    .wa-float span { display: none; }
-    .wa-float { padding: 12px; }
+    .service-item { grid-template-columns: 1fr; gap: 4px; }
+    .service-num { font-size: 18px; margin-bottom: 2px; }
   }
 
+  /* ── CONTACT ── */
+  @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) {
+    .page-contact { padding: 28px 16px 40px; }
+    .hero-contact { margin-bottom: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-headline { letter-spacing: -1px; }
+    .map-embed iframe { height: 260px; }
+  }
 
-  
+  /* ── MODAL on mobile ── */
+  @media (max-width: 768px) {
+    .modal-overlay { padding: 12px; align-items: flex-end; }
+    .modal { border-radius: 20px 20px 0 0; max-height: 92vh; }
+    .modal-grid { grid-template-columns: 1fr 1fr; }
+    .modal-actions { flex-direction: column; }
+    .modal-actions button { width: 100%; justify-content: center; }
+    .modal-price { font-size: 26px; }
+    .calc-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .modal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .modal-body { padding: 16px; }
+    .modal-header { padding: 16px; }
+    .finance-calc { padding: 16px; }
+  }
+
+  /* ── FOOTER ── */
+  @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  @media (max-width: 600px) {
+    .footer-top { grid-template-columns: 1fr; gap: 24px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    footer { padding: 36px 16px 20px; margin-top: 40px; }
+    .footer-logo img { height: 70px; }
+  }
+
+  /* ── WA FLOAT ── */
+  @media (max-width: 480px) {
+    .wa-float span { display: none; }
+    .wa-float { padding: 12px; right: 16px; bottom: 16px; border-radius: 50%; }
+  }
+
+  /* ── STATS STRIP (if used standalone) ── */
+  @media (max-width: 600px) { .stats-strip { grid-template-columns: 1fr 1fr; padding: 0 12px 24px; } }
+
+  /* ── GENERAL MOBILE POLISH ── */
+  @media (max-width: 768px) {
+    .section-title { letter-spacing: -0.5px; }
+    .btn-primary, .btn-ghost { padding: 10px 18px; font-size: 13px; }
+  }
 </style>
 </head>
 <body>
@@ -1026,9 +636,6 @@ img, video, iframe {
   <a href="#" onclick="navigate('about');toggleMenu();return false;">About Us</a>
   <a href="#" onclick="navigate('services');toggleMenu();return false;">Services</a>
   <a href="#" onclick="navigate('contact');toggleMenu();return false;">Contact</a>
-  <!-- <div class="mob-actions">
-    <button class="nav-btn" onclick="toggleTheme()">Dark Mode</button>
-  </div> -->
 </div>
 
 <!-- ══ HOME ══ -->
@@ -1199,8 +806,7 @@ img, video, iframe {
 <div id="page-about" class="page">
   <div class="about-page">
     <div class="about-hero">
-      <!-- <div class="about-eyebrow">About CarRent</div> -->
-      <div class="about-headline" style="margin-top: -7%;">Driven by passion, powered by people</div>
+      <div class="about-headline" style="margin-top: 0;">Driven by passion, powered by people</div>
       <div class="about-desc">We connect drivers with their perfect vehicle, making every journey exceptional from the moment you book.</div>
     </div>
 
@@ -1215,7 +821,7 @@ img, video, iframe {
       </div>
 
       <!-- Featured member -->
-      <div class="team-featured" style="margin-bottom:16px; display:flex;">
+      <div class="team-featured" style="margin-bottom:16px;">
         <div class="team-featured-photo">
           <div class="team-featured-avatar">S</div>
         </div>
@@ -1257,77 +863,52 @@ img, video, iframe {
             <div class="team-name">James Okafor</div>
             <div class="team-role">Head of Operations</div>
             <div class="team-bio">Keeps every rental running like clockwork. 8 years of logistics expertise across 3 continents.</div>
-            <div class="team-tags">
-              <span class="team-tag">Logistics</span>
-              <span class="team-tag">Operations</span>
-              <span class="team-tag">LA Office</span>
-            </div>
+            <div class="team-tags"><span class="team-tag">Logistics</span><span class="team-tag">Operations</span><span class="team-tag">LA Office</span></div>
           </div>
         </div>
-
         <div class="team-card">
           <div class="team-card-photo">
             <div class="team-avatar-large">M</div>
             <div class="team-card-overlay"></div>
             <div class="team-socials">
-              <div class="team-social-btn">in</div>
-              <div class="team-social-btn">𝕏</div>
-              <div class="team-social-btn">@</div>
+              <div class="team-social-btn">in</div><div class="team-social-btn">𝕏</div><div class="team-social-btn">@</div>
             </div>
           </div>
           <div class="team-card-info">
             <div class="team-name">Maya Patel</div>
             <div class="team-role">Lead Designer</div>
             <div class="team-bio">Creates the seamless experiences you love. Former Google, now shaping how people interact with cars.</div>
-            <div class="team-tags">
-              <span class="team-tag">UX</span>
-              <span class="team-tag">Branding</span>
-              <span class="team-tag">Product</span>
-            </div>
+            <div class="team-tags"><span class="team-tag">UX</span><span class="team-tag">Branding</span><span class="team-tag">Product</span></div>
           </div>
         </div>
-
         <div class="team-card">
           <div class="team-card-photo">
             <div class="team-avatar-large">R</div>
             <div class="team-card-overlay"></div>
             <div class="team-socials">
-              <div class="team-social-btn">in</div>
-              <div class="team-social-btn">𝕏</div>
-              <div class="team-social-btn">@</div>
+              <div class="team-social-btn">in</div><div class="team-social-btn">𝕏</div><div class="team-social-btn">@</div>
             </div>
           </div>
           <div class="team-card-info">
             <div class="team-name">Rafael Costa</div>
             <div class="team-role">Fleet Manager</div>
             <div class="team-bio">Passionate about cars and sustainability. Transitioning our fleet to 80% electric by 2026.</div>
-            <div class="team-tags">
-              <span class="team-tag">EV</span>
-              <span class="team-tag">Fleet</span>
-              <span class="team-tag">Sustainability</span>
-            </div>
+            <div class="team-tags"><span class="team-tag">EV</span><span class="team-tag">Fleet</span><span class="team-tag">Sustainability</span></div>
           </div>
         </div>
-
         <div class="team-card">
           <div class="team-card-photo">
             <div class="team-avatar-large">A</div>
             <div class="team-card-overlay"></div>
             <div class="team-socials">
-              <div class="team-social-btn">in</div>
-              <div class="team-social-btn">𝕏</div>
-              <div class="team-social-btn">@</div>
+              <div class="team-social-btn">in</div><div class="team-social-btn">𝕏</div><div class="team-social-btn">@</div>
             </div>
           </div>
           <div class="team-card-info">
             <div class="team-name">Aiko Tanaka</div>
             <div class="team-role">AI Engineer</div>
             <div class="team-bio">Built the AI assistant you're chatting with. Stanford CS grad, ML specialist.</div>
-            <div class="team-tags">
-              <span class="team-tag">ML</span>
-              <span class="team-tag">AI</span>
-              <span class="team-tag">Backend</span>
-            </div>
+            <div class="team-tags"><span class="team-tag">ML</span><span class="team-tag">AI</span><span class="team-tag">Backend</span></div>
           </div>
         </div>
       </div>
@@ -1335,35 +916,22 @@ img, video, iframe {
 
     <!-- Values -->
     <div class="values-section">
-      <div class="section-title" style="font-size:24px">Our values</div>
+      <div class="section-title" style="font-size:24px;margin-bottom:4px;">Our values</div>
       <div class="values-grid">
-        <div class="value-card">
-          <div class="value-icon">🌿</div>
-          <div class="value-title">Sustainability</div>
-          <div class="value-desc">We're committed to building a greener fleet and reducing our carbon footprint with every rental.</div>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">✨</div>
-          <div class="value-title">Excellence</div>
-          <div class="value-desc">From vehicle condition to customer support, we hold ourselves to the highest standards.</div>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🤝</div>
-          <div class="value-title">Transparency</div>
-          <div class="value-desc">No hidden fees, no surprises. What you see is what you pay, always.</div>
-        </div>
+        <div class="value-card"><div class="value-icon">🌿</div><div class="value-title">Sustainability</div><div class="value-desc">We're committed to building a greener fleet and reducing our carbon footprint with every rental.</div></div>
+        <div class="value-card"><div class="value-icon">✨</div><div class="value-title">Excellence</div><div class="value-desc">From vehicle condition to customer support, we hold ourselves to the highest standards.</div></div>
+        <div class="value-card"><div class="value-icon">🤝</div><div class="value-title">Transparency</div><div class="value-desc">No hidden fees, no surprises. What you see is what you pay, always.</div></div>
       </div>
     </div>
-
   </div>
 </div>
+
 <!-- ══ SERVICES ══ -->
 <div class="page" id="page-services">
   <div class="page-hero">
     <div class="page-hero-inner">
-      <!-- <p class="service-eyebrow">Our Services</p> -->
       <h1 class="service-headline" style="margin-top: 2%;">End-to-End Car Buying & Selling Support</h1>
-      <p class="service-desc ">From finding the right car to sorting the paperwork, Bro Cars handles every step.</p>
+      <p class="service-desc">From finding the right car to sorting the paperwork, Bro Cars handles every step.</p>
     </div>
   </div>
   <div class="section">
@@ -1381,9 +949,8 @@ img, video, iframe {
 <div class="page" id="page-contact">
   <div class="page-hero">
     <div class="page-hero-inner">
-      <!-- <p class="contact-eyebrow">Contact Us</p> -->
       <h1 class="contact-headline" style="margin-top: 2%;">We're Here to Help.<br>Get in Touch Today.</h1>
-      <p class="contact-desc ">Our team responds within a few hours on all working days.</p>
+      <p class="contact-desc">Our team responds within a few hours on all working days.</p>
     </div>
   </div>
   <div class="section">
@@ -1427,13 +994,7 @@ img, video, iframe {
       <p class="section-label" style="margin-bottom:12px;">Find Us</p>
       <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:16px;">14 Motoring Lane, Canary Wharf, London E14 5AB</h3>
       <div class="map-embed">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.629798682498!2d-0.02160442346967893!3d51.50529897181397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b9c5b79735%3A0x9dd3aab6bfcd3779!2sCanary%20Wharf%2C%20London!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Bro Cars Location">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.629798682498!2d-0.02160442346967893!3d51.50529897181397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b9c5b79735%3A0x9dd3aab6bfcd3779!2sCanary%20Wharf%2C%20London!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bro Cars Location"></iframe>
       </div>
     </div>
   </div>
@@ -1444,9 +1005,7 @@ img, video, iframe {
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-logo">
-          <img src="logo.png" alt="logo">
-        </div>
+        <div class="footer-logo"><img src="logo.png" alt="logo"></div>
         <p>Premium pre-owned vehicles, transparently priced and personally inspected. Serving customers across the UK since 2025.</p>
       </div>
       <div class="footer-col">
@@ -1497,28 +1056,13 @@ img, video, iframe {
         <button class="btn-primary" onclick="enquireWhatsApp()">Enquire via WhatsApp</button>
         <button class="btn-ghost" onclick="navigate('contact');closeModalDirect()">Send Enquiry</button>
       </div>
-
-      <!-- Finance Calculator -->
       <div class="finance-calc">
         <div class="finance-calc-title"><span>💰</span> Finance Calculator</div>
         <div class="calc-grid">
-          <div class="calc-field">
-            <label class="calc-label">Vehicle Price (£)</label>
-            <input class="calc-input" id="calcPrice" type="number" placeholder="25000" oninput="updateCalcPrice()">
-          </div>
-          <div class="calc-field">
-            <label class="calc-label">Deposit (£)</label>
-            <input class="calc-input" id="calcDeposit" type="number" placeholder="3000" value="3000">
-          </div>
-          <div class="calc-field">
-            <label class="calc-label">Loan Term (months)</label>
-            <input class="calc-input" id="calcTerm" type="range" min="12" max="60" step="12" value="36" oninput="updateTermLabel(this.value)" style="height:auto;padding:8px 0;">
-            <small style="color:var(--text3);font-size:11px;" id="termLabel">36 months</small>
-          </div>
-          <div class="calc-field">
-            <label class="calc-label">Annual Interest Rate (%)</label>
-            <input class="calc-input" id="calcRate" type="number" value="6.9" step="0.1" min="0" max="30">
-          </div>
+          <div class="calc-field"><label class="calc-label">Vehicle Price (£)</label><input class="calc-input" id="calcPrice" type="number" placeholder="25000" oninput="updateCalcPrice()"></div>
+          <div class="calc-field"><label class="calc-label">Deposit (£)</label><input class="calc-input" id="calcDeposit" type="number" placeholder="3000" value="3000"></div>
+          <div class="calc-field"><label class="calc-label">Loan Term (months)</label><input class="calc-input" id="calcTerm" type="range" min="12" max="60" step="12" value="36" oninput="updateTermLabel(this.value)" style="height:auto;padding:8px 0;"><small style="color:var(--text3);font-size:11px;" id="termLabel">36 months</small></div>
+          <div class="calc-field"><label class="calc-label">Annual Interest Rate (%)</label><input class="calc-input" id="calcRate" type="number" value="6.9" step="0.1" min="0" max="30"></div>
         </div>
         <button class="calc-btn" onclick="calculateFinance()">Calculate Monthly Payment</button>
         <div class="calc-result" id="calcResult">
@@ -1528,10 +1072,7 @@ img, video, iframe {
           <div class="calc-result-row"><span class="calc-result-label">Interest Rate (APR)</span><span class="calc-result-val" id="rRate">-</span></div>
           <div class="calc-result-row"><span class="calc-result-label">Loan Term</span><span class="calc-result-val" id="rTerm">-</span></div>
           <div class="calc-result-row"><span class="calc-result-label">Total Amount Payable</span><span class="calc-result-val" id="rTotal">-</span></div>
-          <div class="calc-result-row" style="padding-top:12px;border-top:2px solid var(--border);margin-top:4px;">
-            <span class="calc-result-label" style="font-weight:700;color:var(--text);">Monthly Payment</span>
-            <span class="calc-monthly" id="rMonthly">-</span>
-          </div>
+          <div class="calc-result-row" style="padding-top:12px;border-top:2px solid var(--border);margin-top:4px;"><span class="calc-result-label" style="font-weight:700;color:var(--text);">Monthly Payment</span><span class="calc-monthly" id="rMonthly">-</span></div>
           <p class="calc-note">* Representative example only. Subject to status and approval. Finance provided by approved lenders.</p>
         </div>
       </div>
@@ -1540,7 +1081,6 @@ img, video, iframe {
 </div>
 
 <script>
-// ── DATA ──
 let cars = [
   { id:1, make:'BMW', name:'3 Series 2022', price:24995, mileage:'28,000 miles', fuel:'Petrol', trans:'Automatic', img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80', desc:'Stunning BMW 3 Series in Alpine White. Full BMW service history, heated seats, iDrive infotainment, reversing camera. HPI clear.' },
   { id:2, make:'Tesla', name:'Model 3 2023', price:32500, mileage:'12,000 miles', fuel:'Electric', trans:'Automatic', img:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80', desc:'Tesla Model 3 Long Range in Pearl White. Autopilot, glass roof, 15" touchscreen, OTA updates. Range: 358 miles.' },
@@ -1560,7 +1100,6 @@ const showcaseCars = [
   { name:'Porsche Taycan', subtitle:'Sport saloon EV · 2022', price:'£82,000', img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80', specs:{miles:'18k',fuel:'Electric',trans:'Auto',year:'2022'} },
 ];
 
-// ── NAVIGATION ──
 function navigate(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
@@ -1574,24 +1113,15 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-theme', dark ? '' : 'dark');
   document.querySelector('.nav-right .nav-btn').textContent = dark ? 'Dark Mode' : 'Light Mode';
 }
-// function setMode(mode) {
-//   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-//   document.getElementById('tab-' + mode).classList.add('active');
-// }
-
-// Replace the setMode function with this:
 function setMode(mode) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + mode).classList.add('active');
-  
-  // If Buy button is clicked, scroll to vehicles section
-  if (mode === 'buy') {
-    document.getElementById('carsSection').scrollIntoView({ behavior: 'smooth' });
-  }
+  const mobTab = document.getElementById('mob-tab-' + mode);
+  if (mobTab) mobTab.classList.add('active');
+  if (mode === 'buy') document.getElementById('carsSection').scrollIntoView({ behavior: 'smooth' });
 }
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
-// ── CARS ──
 function renderCars() {
   const q = document.getElementById('searchInput').value.toLowerCase();
   const fuel = document.getElementById('fuelFilter').value;
@@ -1624,7 +1154,6 @@ function renderCars() {
 function filterCars() { renderCars(); }
 function toggleSort() { sortAsc = !sortAsc; document.getElementById('sortBtn').textContent = sortAsc ? 'Price: Low–High' : 'Price: High–Low'; renderCars(); }
 
-// ── MODAL ──
 let currentModalCar = null;
 function openModal(id) {
   const c = cars.find(x => x.id === id);
@@ -1638,7 +1167,6 @@ function openModal(id) {
   document.getElementById('modalSpecs').innerHTML = [
     {k:'Mileage',v:c.mileage||'N/A'},{k:'Fuel',v:c.fuel},{k:'Transmission',v:c.trans},{k:'Make',v:c.make}
   ].map(s => `<div class="modal-spec"><div class="modal-spec-val">${s.v}</div><div class="modal-spec-key">${s.k}</div></div>`).join('');
-  // Pre-fill finance calc
   document.getElementById('calcPrice').value = c.price;
   document.getElementById('calcDeposit').value = Math.round(c.price * 0.1);
   document.getElementById('calcResult').classList.remove('show');
@@ -1653,7 +1181,6 @@ function enquireWhatsApp() {
   window.open('https://wa.me/447911123456?text=' + msg, '_blank');
 }
 
-// ── FINANCE CALCULATOR ──
 function updateTermLabel(v) { document.getElementById('termLabel').textContent = v + ' months'; }
 function updateCalcPrice() {}
 function calculateFinance() {
@@ -1666,11 +1193,8 @@ function calculateFinance() {
   if (financed <= 0) { alert('Deposit cannot exceed the vehicle price.'); return; }
   const monthlyRate = annualRate / 100 / 12;
   let monthly;
-  if (monthlyRate === 0) {
-    monthly = financed / term;
-  } else {
-    monthly = financed * (monthlyRate * Math.pow(1 + monthlyRate, term)) / (Math.pow(1 + monthlyRate, term) - 1);
-  }
+  if (monthlyRate === 0) { monthly = financed / term; }
+  else { monthly = financed * (monthlyRate * Math.pow(1 + monthlyRate, term)) / (Math.pow(1 + monthlyRate, term) - 1); }
   const total = monthly * term + deposit;
   const fmt = n => '£' + n.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2});
   document.getElementById('rPrice').textContent = fmt(price);
@@ -1683,7 +1207,6 @@ function calculateFinance() {
   document.getElementById('calcResult').classList.add('show');
 }
 
-// ── SHOWCASE ──
 function updateShowcase() {
   const c = showcaseCars[showcaseIndex];
   document.getElementById('showcaseName').textContent = c.name;
@@ -1701,7 +1224,6 @@ function updateShowcase() {
 function prevCar() { showcaseIndex = (showcaseIndex - 1 + showcaseCars.length) % showcaseCars.length; updateShowcase(); }
 function nextCar() { showcaseIndex = (showcaseIndex + 1) % showcaseCars.length; updateShowcase(); }
 
-// ── DATE ──
 function changeDay(d) {
   const m=[31,28,31,30,31,30,31,31,30,31,30,31];
   dateDay += d;
@@ -1712,7 +1234,6 @@ function changeDay(d) {
   document.getElementById('dateSubtitle').textContent = dateDay + ' ' + dateMonths[dateMonthIdx] + ' · 10:25 AM';
 }
 
-// ── AI ──
 const aiReplies = {
   'Book a rent': "Sure! I can help you book. Which car interests you? We have the Volvo EX30, BMW M4, Tesla Model S, and more available.",
   'Damage Analysis': "Upload photos and I'll help assess the vehicle's condition. Alternatively, book an independent inspection for £99.",
@@ -1749,7 +1270,6 @@ function clearAI() {
   document.getElementById('aiQuickGrid').style.display = 'grid';
 }
 
-// ── CONTACT ──
 function submitContact() {
   if (!document.getElementById('c-fname').value.trim() || !document.getElementById('c-email').value.trim() || !document.getElementById('c-msg').value.trim()) { alert('Please fill in your name, email, and message.'); return; }
   document.getElementById('formSuccess').style.display = 'block';
@@ -1757,13 +1277,11 @@ function submitContact() {
   setTimeout(() => document.getElementById('formSuccess').style.display = 'none', 5000);
 }
 
-// ── STATS COUNT UP ──
 function animateCount(el, target) {
   let c = 0; const step = Math.ceil(target/30);
   const iv = setInterval(() => { c = Math.min(c+step, target); el.textContent = c; if(c>=target) clearInterval(iv); }, 40);
 }
 
-// ── CLOCK ──
 function updateClock() {
   const now = new Date();
   const h = now.getHours(), m = String(now.getMinutes()).padStart(2,'0');
@@ -1773,7 +1291,6 @@ function updateClock() {
   if(a) a.textContent = ampm;
 }
 
-// ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
   renderCars();
   setTimeout(() => animateCount(document.getElementById('statCars'), cars.length), 400);
@@ -1783,9 +1300,6 @@ document.addEventListener('DOMContentLoaded', () => {
   updateTermLabel(36);
 });
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModalDirect(); });
-
-
-
 </script>
 </body>
 </html>

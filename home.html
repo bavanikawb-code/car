@@ -44,26 +44,18 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 100%; overflow-x: hidden; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; transition: background 0.3s, color 0.3s; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; transition: background 0.3s, color 0.3s; padding-top: 64px; }
   img, video, iframe { max-width: 100%; }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
   /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(242,242,240,0.88); backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border); padding: 0 24px;
-    transition: background 0.3s;
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(242,242,240,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 24px; transition: background 0.3s; }
   [data-theme="dark"] nav { background: rgba(17,17,16,0.88); }
   .nav-inner { max-width: 1440px; margin: 0 auto; display: flex; align-items: center; height: 64px; gap: 24px; }
   .logo { text-decoration: none; display: flex; align-items: center; }
   .logo img { height: 48px; width: auto; }
-  .nav-tabs { display: flex; gap: 4px; background: var(--card); border-radius: 10px; padding: 4px; border: 1px solid var(--border); }
-  .nav-tab { padding: 6px 18px; border-radius: 7px; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: var(--text2); cursor: pointer; transition: all 0.2s; }
-  .nav-tab.active, .nav-tab:hover { background: var(--text); color: var(--bg); }
   .nav-links { display: flex; gap: 4px; list-style: none; margin-left: 12px; }
   .nav-links a { padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 500; color: var(--text2); transition: all 0.2s; }
   .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--border); }
@@ -86,11 +78,9 @@
   .hero-title span { background: var(--chrome); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .hero-sub { font-size: 16px; color: var(--text2); max-width: 480px; line-height: 1.6; margin-bottom: 28px; }
 
-  /* DASHBOARD */
-  .dashboard { max-width: 1440px; margin: 0 auto; padding: 24px 24px 48px; display: grid; grid-template-columns: 1fr 380px; grid-template-rows: auto auto; gap: 16px; }
-  .dashboard-main { grid-column: 1; grid-row: 1; }
-  .dashboard-side { grid-column: 2; grid-row: 1 / 3; display: flex; flex-direction: column; gap: 16px; }
-  .dashboard-bottom { grid-column: 1; grid-row: 2; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  /* DASHBOARD — full width, no side panel */
+  .dashboard { max-width: 1440px; margin: 0 auto; padding: 2px 10px 24px; display: flex; flex-direction: column; gap: 16px; }
+  .dashboard-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 
   /* Car Showcase */
   .car-showcase { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 28px 32px; position: relative; overflow: hidden; box-shadow: var(--shadow); min-height: 340px; display: flex; flex-direction: column; }
@@ -122,92 +112,19 @@
   .car-spec-val { font-size: 14px; font-weight: 600; }
   .car-spec-key { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; }
 
-  /* AI Card */
-  .ai-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 20px; box-shadow: var(--shadow); flex-shrink: 0; }
-  .ai-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-  .ai-title { font-size: 14px; font-weight: 600; }
-  .ai-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
-  .ai-close { width: 24px; height: 24px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); font-size: 14px; color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  .ai-quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
-  .ai-quick { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; cursor: pointer; transition: all 0.2s; }
-  .ai-quick:hover { border-color: var(--silver); background: var(--silver-light); }
-  .ai-quick-icon { font-size: 16px; margin-bottom: 4px; }
-  .ai-quick-title { font-size: 12px; font-weight: 600; }
-  .ai-quick-sub { font-size: 11px; color: var(--text3); }
-  .ai-input-row { display: flex; gap: 8px; align-items: center; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 4px 4px 4px 12px; }
-  .ai-input { flex: 1; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text); outline: none; min-width: 0; }
-  .ai-input::placeholder { color: var(--text3); }
-  .ai-input-icons { display: flex; gap: 4px; align-items: center; }
-  .ai-icon-btn { width: 28px; height: 28px; border-radius: 7px; border: none; background: transparent; color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all 0.2s; }
-  .ai-icon-btn:hover { background: var(--border); }
-  .ai-send { background: var(--cta); color: white; border: none; border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; white-space: nowrap; }
-  .ai-send:hover { background: var(--cta-hover); }
-  .ai-messages { max-height: 200px; overflow-y: auto; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px; }
-  .ai-msg { padding: 8px 12px; border-radius: 10px; font-size: 13px; line-height: 1.5; max-width: 90%; }
-  .ai-msg.bot { background: var(--bg); color: var(--text); border: 1px solid var(--border); align-self: flex-start; }
-  .ai-msg.user { background: var(--cta); color: white; align-self: flex-end; }
-
-  /* Location Card */
-  .loc-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 16px 20px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
-  .loc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-  .loc-title { font-size: 13px; font-weight: 600; }
-  .loc-expand { width: 28px; height: 28px; border-radius: 7px; border: 1px solid var(--border); background: var(--bg); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 11px; color: var(--text2); }
-  .loc-address { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
-  .mini-map { height: 80px; background: var(--bg2); border-radius: 10px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-  .map-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.5; }
-  .map-pin { width: 28px; height: 28px; background: var(--cta); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); position: relative; z-index: 1; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-
-  /* Date Card */
-  .date-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
-  .date-header { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 8px; }
-  .date-title { font-size: 13px; font-weight: 600; }
-  .date-sub { font-size: 11px; color: var(--text3); }
-  .date-display { display: flex; align-items: center; gap: 16px; }
-  .date-num { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 700; line-height: 1; display: flex; align-items: center; gap: 8px; }
-  .date-arr { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 10px; cursor: pointer; transition: all 0.2s; }
-  .date-arr:hover { background: var(--text); color: var(--bg); }
-  .date-month { font-size: 12px; color: var(--text2); text-align: center; font-weight: 500; }
-  .date-divider { width: 1px; height: 48px; background: var(--border); }
-  .date-time { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 700; line-height: 1; }
-  .date-ampm { font-size: 11px; color: var(--text3); text-align: center; }
-
-  /* Payment Card */
-  .pay-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 20px; box-shadow: var(--shadow); }
-  .pay-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-  .pay-title { font-size: 13px; font-weight: 600; }
-  .pay-sub { font-size: 11px; color: var(--text3); }
-  .pay-method { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg); border-radius: 12px; border: 1px solid var(--border); }
-  .card-icon { width: 40px; height: 26px; background: linear-gradient(135deg, #2c2c2c, #555); border-radius: 5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .card-icon::after { content: ''; width: 24px; height: 8px; border-radius: 2px; background: linear-gradient(90deg, #aaa, #ddd); }
-  .pay-info { flex: 1; min-width: 0; }
-  .pay-type { font-size: 13px; font-weight: 600; }
-  .pay-num { font-size: 11px; color: var(--text3); }
-  .pay-radio { width: 18px; height: 18px; border-radius: 50%; background: var(--cta); border: 3px solid white; box-shadow: 0 0 0 2px var(--cta); flex-shrink: 0; }
-
   /* Stats */
-  .stats-strip { max-width: 1440px; margin: 0 auto; padding: 0 24px 32px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
   .stat-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 20px 24px; box-shadow: var(--shadow); }
   .stat-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; margin-bottom: 4px; }
   .stat-num.accent { background: var(--chrome); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .stat-label { font-size: 12px; color: var(--text2); font-weight: 500; }
 
   /* Section */
-  .section { max-width: 1440px; margin: 0 auto; padding: 48px 24px; }
-  .section-head { margin-bottom: 32px; }
+  .section { max-width: 1440px; margin: 0 auto; padding: 28px 24px 36px; }
+  .section-head { margin-bottom: 20px; }
   .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--silver); margin-bottom: 8px; }
   .section-title { font-family: 'Syne', sans-serif; font-size: clamp(24px, 4vw, 32px); font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
   .section-sub { font-size: 15px; color: var(--text2); }
-
-  /* Search */
-  .search-wrap { display: flex; gap: 10px; align-items: center; margin-bottom: 24px; flex-wrap: wrap; }
-  .search-box { flex: 1; min-width: 200px; display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0 16px; height: 44px; }
-  .search-box svg { color: var(--text3); flex-shrink: 0; }
-  .search-box input { flex: 1; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; min-width: 0; }
-  .search-box input::placeholder { color: var(--text3); }
-  .filter-sel { height: 44px; padding: 0 14px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text); cursor: pointer; outline: none; appearance: none; min-width: 130px; }
-  .sort-btn { height: 44px; padding: 0 16px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--text); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-  .sort-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
-  .results-count { font-size: 13px; color: var(--text3); margin-bottom: 20px; }
+  .results-count { font-size: 13px; color: var(--text3); margin-bottom: 16px; }
 
   /* Car Grid */
   .car-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
@@ -216,7 +133,7 @@
   .car-card-img { height: 180px; overflow: hidden; position: relative; background: var(--bg2); }
   .car-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
   .car-card:hover .car-card-img img { transform: scale(1.04); }
-  .car-card-badge { position: absolute; top: 10px; left: 10px; background: var(--card); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 700; color: var(--text); border: 1px solid var(--border); }
+  .car-card-badge { position: absolute; top: 10px; left: 10px; background: var(--card); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 700; color: var(--text); border: 1px solid var(--border); z-index: 5; }
   .car-card-body { padding: 16px 20px 20px; }
   .car-card-make { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); font-weight: 600; margin-bottom: 4px; }
   .car-card-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; }
@@ -228,25 +145,39 @@
   .car-card-btn:hover { background: var(--cta-hover); }
   .car-empty { grid-column: 1/-1; text-align: center; padding: 60px 24px; color: var(--text3); }
 
+  /* IMAGE SLIDER */
+  .card-slider { position: relative; width: 100%; height: 100%; overflow: hidden; touch-action: pan-y; }
+  .card-slider-track { display: flex; height: 100%; transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+  .card-slide { flex: 0 0 100%; height: 100%; overflow: hidden; position: relative; }
+  .card-slide img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+  .car-card:hover .card-slide img { transform: scale(1.04); }
+  .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.92); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #1a1a18; z-index: 10; opacity: 0; transition: opacity 0.2s, background 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.18); line-height: 1; padding: 0; }
+  .slider-arrow:hover { background: white; }
+  .slider-arrow.prev { left: 7px; }
+  .slider-arrow.next { right: 7px; }
+  .car-card:hover .slider-arrow { opacity: 1; }
+  @media (hover: none) { .slider-arrow { opacity: 0.75 !important; width: 32px; height: 32px; } }
+  .slider-dots { position: absolute; bottom: 8px; left: 0; right: 0; display: flex; justify-content: center; gap: 5px; z-index: 10; pointer-events: none; }
+  .slider-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.55); border: none; padding: 0; cursor: pointer; transition: background 0.2s, transform 0.2s; flex-shrink: 0; pointer-events: all; }
+  .slider-dot.active { background: white; transform: scale(1.35); }
+  .img-count-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.55); color: white; border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 600; z-index: 10; pointer-events: none; display: flex; align-items: center; gap: 4px; }
+
   /* WHY */
-  .why-section { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 64px 24px; }
+  .why-section { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 24px; }
   .why-inner { max-width: 1440px; margin: 0 auto; }
-  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
   .why-card { background: var(--bg); border-radius: var(--radius-sm); border: 1px solid var(--border); padding: 20px 22px; }
   .why-icon { width: 36px; height: 36px; background: var(--silver-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-size: 16px; border: 1px solid var(--border); }
   .why-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
   .why-desc { font-size: 13px; color: var(--text2); line-height: 1.5; }
 
-  /* ABOUT PAGE */
-  .about-page { padding: 60px 24px 60px; max-width: 1200px; margin: 0 auto; }
-  .about-hero { text-align: center; margin-bottom: 60px; }
-  .about-eyebrow { display: inline-block; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; background: var(--accent-pale); padding: 3px 5px; border-radius: 100px; margin-bottom: 50px; }
+  /* ABOUT */
+  .about-page { padding: 36px 24px 44px; max-width: 1200px; margin: 0 auto; }
+  .about-hero { text-align: center; margin-bottom: 36px; }
   .about-headline { font-family: 'Syne', sans-serif; font-size: clamp(25px, 3vw, 40px); font-weight: 710; letter-spacing: -2px; line-height: 1.05; max-width: 900px; margin: 0 auto 15px; }
   .about-desc { font-size: 16px; color: var(--text2); max-width: 900px; margin: 0 auto; line-height: 1.6; }
-
-  /* Team */
   .team-section { }
-  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 12px; }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
   .section-subtitle { font-size: 14px; color: var(--text2); margin-top: 6px; }
   .view-all-link { font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 4px; cursor: pointer; white-space: nowrap; }
   .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -287,20 +218,18 @@
   .team-featured-stats { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
   .team-stat-num { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: #a0e0b0; }
   .team-stat-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
-
-  /* Values */
-  .values-section { margin-top: 60px; }
-  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+  .values-section { margin-top: 36px; }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
   .value-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; }
   .value-icon { font-size: 28px; margin-bottom: 12px; }
   .value-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
   .value-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
 
   /* Services */
-  .page-hero { padding: 40px 24px 0; }
+  .page-hero { padding: 28px 24px 0; }
   .page-hero-inner { max-width: 1440px; margin: 0 auto; text-align: center; }
   .services-list { display: flex; flex-direction: column; gap: 0; }
-  .service-item { display: grid; grid-template-columns: 80px 1fr; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--border); }
+  .service-item { display: grid; grid-template-columns: 80px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); }
   .service-num { font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; color: var(--border); line-height: 1; }
   .service-name { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 10px; }
   .service-desc { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 14px; }
@@ -309,10 +238,9 @@
   .service-headline { font-family: 'Syne', sans-serif; font-size: clamp(25px, 3vw, 40px); font-weight: 770; letter-spacing: -2px; line-height: 1.05; max-width: 900px; margin: 0 auto 10px; text-align: center; }
 
   /* Contact */
-  .page-contact { padding: 40px 24px 60px; max-width: 1200px; margin: 0 auto; }
-  .hero-contact { text-align: center; margin-bottom: 60px; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; }
-  .contact-info h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+  .page-contact { padding: 28px 24px 44px; max-width: 900px; margin: 0 auto; }
+  .contact-info-centered { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 40px 48px; box-shadow: var(--shadow); }
+  .contact-info-centered h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 24px; }
   .contact-detail { padding: 14px 0; border-bottom: 1px solid var(--border); }
   .contact-detail-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); font-weight: 600; margin-bottom: 4px; }
   .contact-detail-val { font-size: 14px; color: var(--text); line-height: 1.5; }
@@ -322,15 +250,7 @@
   .hour-row { display: flex; justify-content: space-between; font-size: 13px; }
   .hour-day { color: var(--text2); }
   .hour-time { font-weight: 600; }
-  .contact-form { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 28px; box-shadow: var(--shadow); }
-  .contact-form h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 20px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-  .form-label { font-size: 12px; font-weight: 600; color: var(--text2); }
-  .form-input, .form-select, .form-textarea { padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border-color 0.2s; width: 100%; }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--silver); }
-  .form-textarea { min-height: 100px; resize: vertical; }
-  .form-success { display: none; margin-top: 12px; padding: 12px 16px; background: var(--silver-light); color: var(--text2); border-radius: 10px; font-size: 13px; font-weight: 600; border: 1px solid var(--border); }
+  .contact-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
   .map-embed { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
   .map-embed iframe { display: block; width: 100%; height: 380px; border: none; }
 
@@ -350,36 +270,20 @@
   .modal-spec-key { font-size: 11px; color: var(--text3); }
   .modal-price { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 8px; }
   .modal-desc { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 20px; }
-  .modal-actions { display: flex; gap: 10px; margin-bottom: 24px; }
-
-  /* Finance Calc */
-  .finance-calc { background: var(--bg); border-radius: 14px; border: 1px solid var(--border); padding: 20px; }
-  .finance-calc-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-  .calc-field { display: flex; flex-direction: column; gap: 5px; }
-  .calc-label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
-  .calc-input { padding: 9px 12px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; width: 100%; }
-  .calc-input:focus { border-color: var(--silver); }
-  .calc-range { width: 100%; accent-color: var(--cta); }
-  .calc-btn { width: 100%; padding: 11px; background: var(--cta); color: white; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-bottom: 14px; }
-  .calc-btn:hover { background: var(--cta-hover); }
-  .calc-result { background: var(--card); border-radius: 10px; border: 1px solid var(--border); padding: 14px 16px; display: none; }
-  .calc-result.show { display: block; }
-  .calc-result-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .calc-result-row:last-child { border-bottom: none; font-weight: 700; font-size: 15px; }
-  .calc-result-label { color: var(--text2); }
-  .calc-result-val { font-weight: 600; }
-  .calc-monthly { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--text); }
-  .calc-note { font-size: 11px; color: var(--text3); margin-top: 8px; }
+  .modal-actions { display: flex; gap: 10px; }
+  .modal-gallery { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; }
+  .modal-gallery-thumb { width: 64px; height: 48px; flex-shrink: 0; border-radius: 8px; overflow: hidden; border: 2px solid transparent; cursor: pointer; transition: border-color 0.2s; }
+  .modal-gallery-thumb.active { border-color: var(--cta); }
+  .modal-gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
   /* Toast */
   .toast { position: fixed; bottom: 24px; right: 24px; background: var(--text); color: #fff; padding: 12px 20px; border-radius: 12px; font-size: 13px; font-weight: 500; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
   .toast.show { opacity: 1; transform: translateY(0); }
 
   /* Footer */
-  footer { background: var(--card); border-top: 1px solid var(--border); padding: 48px 24px 24px; margin-top: 64px; }
+  footer { background: var(--card); border-top: 1px solid var(--border); padding: 40px 24px 24px; margin-top: 40px; }
   .footer-inner { max-width: 1440px; margin: 0 auto; }
-  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px; margin-bottom: 32px; }
   .footer-logo img { height: 90px; width: auto; margin-bottom: 10px; display: block; margin-top: -15px; }
   .footer-brand p { font-size: 13px; color: var(--text2); line-height: 1.6; max-width: 280px; }
   .footer-col h4 { font-size: 13px; font-weight: 700; margin-bottom: 14px; }
@@ -407,60 +311,61 @@
   .mobile-menu { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 90; flex-direction: column; padding: 80px 24px 24px; gap: 8px; }
   .mobile-menu.open { display: flex; }
   .mobile-menu a { font-size: 20px; font-weight: 600; color: var(--text); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .mob-actions { display: flex; gap: 10px; margin-top: 24px; }
 
-  /* =============================================
-     MOBILE IMPROVEMENTS — the new stuff
-  ============================================= */
+  /* SOLD OUT */
+  .sold-out-section { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .sold-out-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .sold-out-header h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--text2); }
+  .sold-out-badge { background: #fef2f2; color: #dc2626; border: 1px solid #fca5a5; border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  [data-theme="dark"] .sold-out-badge { background: rgba(220,38,38,0.12); border-color: rgba(220,38,38,0.3); }
+  .sold-out-sub { font-size: 13px; color: var(--text3); margin-bottom: 20px; }
+  .car-card.sold-out { cursor: default; }
+  .car-card.sold-out:hover { transform: none; box-shadow: var(--shadow); }
+  .car-card.sold-out .car-card-img img { filter: grayscale(100%); opacity: 0.55; }
+  .sold-out-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.32); z-index: 20; }
+  .sold-out-stamp { background: #dc2626; color: white; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 6px; border: 2px solid rgba(255,255,255,0.4); transform: rotate(-8deg); box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  .car-card.sold-out .car-card-price { color: var(--text3); text-decoration: line-through; }
+  .car-card.sold-out .car-card-btn { background: var(--bg2); color: var(--text3); cursor: not-allowed; border: 1px solid var(--border); }
+  .car-card.sold-out .car-card-btn:hover { background: var(--bg2); transform: none; }
 
-  /* Hide location badge on mobile to save space */
-@media (max-width: 768px) {
-  .location-badge { display: none; }
-  .nav-inner { gap: 8px; }
-  .nav-tabs { display: flex; padding: 3px; }
-  .nav-tab { padding: 5px 12px; font-size: 13px; }
-  .hamburger { display: flex; }
-  .nav-links { display: none; }
-  .nav-inner { height: 60px; }
-  nav { padding: 0 16px; }
-}
-
-  /* ── HERO ── */
+  /* RESPONSIVE */
   @media (max-width: 768px) {
-    .hero-section { padding: 28px 16px 0; }
+    body { padding-top: 60px; }
+    .location-badge { display: none; }
+    .nav-inner { gap: 8px; height: 60px; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; }
+    nav { padding: 0 16px; }
+    .hero-section { padding: 24px 16px 0; }
     .hero-title { letter-spacing: -1px; margin-bottom: 12px; }
     .hero-sub { font-size: 15px; max-width: 100%; margin-bottom: 20px; }
-    .hero-label { font-size: 11px; }
-  }
-
-  /* ── DASHBOARD: full single-column on mobile ── */
-  @media (max-width: 1200px) {
-    .dashboard { grid-template-columns: 1fr; padding: 16px 16px 32px; }
-    .dashboard-side { grid-column: 1; grid-row: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .dashboard-bottom { grid-column: 1; grid-template-columns: 1fr 1fr 1fr; }
+    .section { padding: 20px 16px 28px; }
+    .car-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .page-hero { padding: 20px 16px 0; }
+    .service-item { grid-template-columns: 40px 1fr; gap: 12px; padding: 18px 0; }
+    .service-num { font-size: 22px; }
+    .service-name { font-size: 17px; }
+    .contact-details-grid { grid-template-columns: 1fr; gap: 0; }
+    .contact-info-centered { padding: 24px; }
+    .map-embed iframe { height: 260px; }
+    .modal-overlay { padding: 12px; align-items: flex-end; }
+    .modal { border-radius: 20px 20px 0 0; max-height: 92vh; }
+    .modal-grid { grid-template-columns: 1fr 1fr; }
+    .modal-actions { flex-direction: column; }
+    .modal-actions button { width: 100%; justify-content: center; }
+    .modal-price { font-size: 26px; }
   }
 
   @media (max-width: 900px) {
-    /* Showcase: static image below content */
     .car-showcase { padding: 20px; min-height: unset; }
     .car-showcase::before { display: none; }
-    .car-image-wrap {
-      position: relative;
-      right: auto; top: auto;
-      transform: none;
-      width: 100%;
-      margin-top: 20px;
-      text-align: center;
-    }
+    .car-image-wrap { position: relative; right: auto; top: auto; transform: none; width: 100%; margin-top: 20px; text-align: center; }
     .car-image-wrap img { max-height: 200px; width: auto; max-width: 100%; }
     .car-name { font-size: 26px; }
     .car-price { font-size: 24px; }
     .car-actions { flex-wrap: wrap; }
-    .car-actions .btn-primary,
-    .car-actions .btn-ghost { flex: 1; min-width: 120px; justify-content: center; }
+    .car-actions .btn-primary, .car-actions .btn-ghost { flex: 1; min-width: 120px; justify-content: center; }
     .car-specs-row { gap: 12px; flex-wrap: wrap; }
-
-    .dashboard-side { grid-template-columns: 1fr; }
     .dashboard-bottom { grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
     .stat-card { padding: 16px; }
     .stat-num { font-size: 24px; }
@@ -468,134 +373,55 @@
   }
 
   @media (max-width: 600px) {
-    .dashboard { padding: 12px 12px 24px; gap: 12px; }
-    .dashboard-bottom { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .dashboard { padding: 12px 12px 16px; gap: 12px; }
+    .dashboard-bottom { gap: 8px; }
     .stat-card { padding: 14px 12px; }
     .stat-num { font-size: 22px; }
-
-    /* Date + location side by side */
-    .dashboard-side > div:last-of-type { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-    /* Payment card: tighten */
-    .pay-method { flex-wrap: nowrap; gap: 8px; }
-    .pay-num { font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   }
 
   @media (max-width: 480px) {
-    .dashboard-bottom { grid-template-columns: 1fr 1fr 1fr; }
     .stat-card { padding: 12px 10px; }
     .stat-num { font-size: 20px; }
     .stat-label { font-size: 10px; }
     .car-name { font-size: 22px; }
-  }
-
-  /* ── AI CARD on mobile ── */
-  @media (max-width: 600px) {
-    .ai-quick-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
-    .ai-quick { padding: 8px 10px; }
-    .ai-icon-btn { display: none; } /* hide mic/clip on very small */
-  }
-
-  /* ── SECTION & SEARCH ── */
-  @media (max-width: 768px) {
-    .section { padding: 32px 16px; }
-    .search-wrap { gap: 8px; }
-    .search-box { min-width: unset; }
-    .filter-sel { min-width: unset; flex: 1; }
-    .sort-btn { width: 100%; }
+    .car-card-img { height: 200px; }
     .car-grid { grid-template-columns: 1fr; }
+    .modal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .modal-body { padding: 16px; }
+    .modal-header { padding: 16px; }
+    .service-item { grid-template-columns: 1fr; gap: 4px; }
+    .service-num { font-size: 18px; margin-bottom: 2px; }
   }
 
-  @media (max-width: 480px) {
-    .search-wrap { flex-direction: column; align-items: stretch; }
-    .search-box { width: 100%; }
-    .filter-sel { width: 100%; }
-    .sort-btn { width: 100%; }
-  }
-
-  /* ── WHY CARDS ── */
   @media (max-width: 1024px) { .why-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { .why-grid { grid-template-columns: 1fr; gap: 10px; } .why-section { padding: 40px 16px; } }
+  @media (max-width: 480px) { .why-grid { grid-template-columns: 1fr; gap: 10px; } .why-section { padding: 28px 16px; } }
 
-  /* ── ABOUT + TEAM ── */
   @media (max-width: 1024px) { .team-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 768px) {
-    .about-page { padding: 40px 16px 40px; }
-    .about-hero { margin-bottom: 40px; }
-    .about-headline { letter-spacing: -1px; }
-    .team-grid { grid-template-columns: 1fr; }
+    .about-page { padding: 24px 16px 32px; }
+    .about-hero { margin-bottom: 24px; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
     .team-card:nth-child(2), .team-card:nth-child(4) { margin-top: 0; }
     .team-featured { flex-direction: column; }
     .team-featured-photo { width: 100%; height: 140px; }
     .team-featured-content { padding: 20px; }
     .team-featured-name { font-size: 22px; }
-    .section-header { margin-bottom: 24px; }
+    .section-header { margin-bottom: 18px; }
     .values-grid { grid-template-columns: 1fr; gap: 10px; }
-    .values-section { margin-top: 40px; }
+    .values-section { margin-top: 24px; }
   }
+  @media (max-width: 480px) { .team-grid { grid-template-columns: 1fr; } }
 
-  /* ── SERVICES ── */
-  @media (max-width: 768px) {
-    .page-hero { padding: 28px 16px 0; }
-    .service-item { grid-template-columns: 40px 1fr; gap: 12px; padding: 24px 0; }
-    .service-num { font-size: 22px; }
-    .service-name { font-size: 17px; }
-    .service-desc { font-size: 13px; }
-  }
-  @media (max-width: 480px) {
-    .service-item { grid-template-columns: 1fr; gap: 4px; }
-    .service-num { font-size: 18px; margin-bottom: 2px; }
-  }
-
-  /* ── CONTACT ── */
-  @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 768px) {
-    .page-contact { padding: 28px 16px 40px; }
-    .hero-contact { margin-bottom: 40px; }
-    .form-row { grid-template-columns: 1fr; }
-    .contact-headline { letter-spacing: -1px; }
-    .map-embed iframe { height: 260px; }
-  }
-
-  /* ── MODAL on mobile ── */
-  @media (max-width: 768px) {
-    .modal-overlay { padding: 12px; align-items: flex-end; }
-    .modal { border-radius: 20px 20px 0 0; max-height: 92vh; }
-    .modal-grid { grid-template-columns: 1fr 1fr; }
-    .modal-actions { flex-direction: column; }
-    .modal-actions button { width: 100%; justify-content: center; }
-    .modal-price { font-size: 26px; }
-    .calc-grid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 480px) {
-    .modal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-    .modal-body { padding: 16px; }
-    .modal-header { padding: 16px; }
-    .finance-calc { padding: 16px; }
-  }
-
-  /* ── FOOTER ── */
   @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; } }
   @media (max-width: 600px) {
     .footer-top { grid-template-columns: 1fr; gap: 24px; }
     .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-    footer { padding: 36px 16px 20px; margin-top: 40px; }
+    footer { padding: 28px 16px 20px; margin-top: 28px; }
     .footer-logo img { height: 70px; }
   }
-
-  /* ── WA FLOAT ── */
   @media (max-width: 480px) {
     .wa-float span { display: none; }
     .wa-float { padding: 12px; right: 16px; bottom: 16px; border-radius: 50%; }
-  }
-
-  /* ── STATS STRIP (if used standalone) ── */
-  @media (max-width: 600px) { .stats-strip { grid-template-columns: 1fr 1fr; padding: 0 12px 24px; } }
-
-  /* ── GENERAL MOBILE POLISH ── */
-  @media (max-width: 768px) {
-    .section-title { letter-spacing: -0.5px; }
-    .btn-primary, .btn-ghost { padding: 10px 18px; font-size: 13px; }
   }
 </style>
 </head>
@@ -603,16 +429,13 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-inner">
+  <div class="nav-inner" style="display: flex; gap: 80px;">
     <a href="#" class="logo" onclick="navigate('home');return false;">
-        <img src="logo.png" alt="Logo" style="height: 150px; width: auto; margin-top: 37%;">
+      <img src="logo.png" alt="Logo" style="height: 150px; width: auto; margin-top: 37%;">
     </a>
-    <div class="nav-tabs">
-      <button class="nav-tab" id="tab-buy" onclick="setMode('buy')">Buy</button>
-      <button class="nav-tab" id="tab-sell" onclick="setMode('sell')">Sell</button>
-    </div>
     <ul class="nav-links">
       <li><a href="#" class="active" id="nl-home" onclick="navigate('home');return false;">Home</a></li>
+      <li><a href="#" id="nl-stock" onclick="navigate('stock');return false;">Our Stock</a></li>
       <li><a href="#" id="nl-about" onclick="navigate('about');return false;">About Us</a></li>
       <li><a href="#" id="nl-services" onclick="navigate('services');return false;">Services</a></li>
       <li><a href="#" id="nl-contact" onclick="navigate('contact');return false;">Contact</a></li>
@@ -633,6 +456,7 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#" onclick="navigate('home');toggleMenu();return false;">Home</a>
+  <a href="#" onclick="navigate('stock');toggleMenu();return false;">Our Stock</a>
   <a href="#" onclick="navigate('about');toggleMenu();return false;">About Us</a>
   <a href="#" onclick="navigate('services');toggleMenu();return false;">Services</a>
   <a href="#" onclick="navigate('contact');toggleMenu();return false;">Contact</a>
@@ -647,113 +471,47 @@
     <p class="hero-sub">Hand-picked, inspected, and transparently priced pre-owned vehicles. No hidden fees, just great cars.</p>
   </div>
 
-  <!-- DASHBOARD -->
+  <!-- DASHBOARD — full width, no side panel -->
   <div class="dashboard">
-    <div class="dashboard-main">
-      <div class="car-showcase reveal">
-        <div class="car-top">
-          <button class="car-nav-btn" onclick="prevCar()">←</button>
-          <button class="car-nav-btn" onclick="nextCar()">→</button>
+    <div class="car-showcase reveal">
+      <div class="car-top">
+        <button class="car-nav-btn" onclick="prevCar()">←</button>
+        <button class="car-nav-btn" onclick="nextCar()">→</button>
+      </div>
+      <div class="car-name" id="showcaseName">Volvo EX30</div>
+      <div class="car-subtitle" id="showcaseSubtitle">Fully electric crossover · 2024</div>
+      <div class="car-owners">
+        <div class="owner-avatars">
+          <div class="owner-avatar">L</div>
+          <div class="owner-avatar">R</div>
+          <div class="owner-avatar">F</div>
+          <div class="owner-avatar">B</div>
         </div>
-        <div class="car-name" id="showcaseName">Volvo EX30</div>
-        <div class="car-subtitle" id="showcaseSubtitle">Fully electric crossover · 2024</div>
-        <div class="car-owners">
-          <div class="owner-avatars">
-            <div class="owner-avatar">L</div>
-            <div class="owner-avatar">R</div>
-            <div class="owner-avatar">F</div>
-            <div class="owner-avatar">B</div>
-          </div>
-          <span style="font-size:12px;color:var(--text3);margin-left:4px;">+4 enquiring</span>
-        </div>
-        <div class="car-image-wrap" id="showcaseImgWrap">
-          <img id="showcaseImg" src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80" alt="Car" onerror="this.src='https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80'">
-        </div>
-        <div class="car-price-tag">
-          <div class="car-price" id="showcasePrice">£28,995</div>
-          <div class="car-price-note">OTR · Finance available</div>
-        </div>
-        <div class="car-specs-row" id="showcaseSpecs">
-          <div class="car-spec"><div class="car-spec-val">12k</div><div class="car-spec-key">Miles</div></div>
-          <div class="car-spec"><div class="car-spec-val">Electric</div><div class="car-spec-key">Fuel</div></div>
-          <div class="car-spec"><div class="car-spec-val">Auto</div><div class="car-spec-key">Trans</div></div>
-          <div class="car-spec"><div class="car-spec-val">2024</div><div class="car-spec-key">Year</div></div>
-        </div>
-        <div class="car-actions">
-          <button class="btn-primary" onclick="navigate('contact')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 1.21h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 8.91A16 16 0 0015.1 15.9l.77-.77a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-            Enquire Now
-          </button>
-          <button class="btn-ghost" onclick="document.getElementById('carsSection').scrollIntoView({behavior:'smooth'})">Browse All</button>
-        </div>
+        <span style="font-size:12px;color:var(--text3);margin-left:4px;">+4 enquiring</span>
+      </div>
+      <div class="car-image-wrap" id="showcaseImgWrap">
+        <img id="showcaseImg" src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80" alt="Car" onerror="this.src='https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80'">
+      </div>
+      <div class="car-price-tag">
+        <div class="car-price" id="showcasePrice">£28,995</div>
+        <div class="car-price-note">OTR · Finance available</div>
+      </div>
+      <div class="car-specs-row" id="showcaseSpecs">
+        <div class="car-spec"><div class="car-spec-val">12k</div><div class="car-spec-key">Miles</div></div>
+        <div class="car-spec"><div class="car-spec-val">Electric</div><div class="car-spec-key">Fuel</div></div>
+        <div class="car-spec"><div class="car-spec-val">Auto</div><div class="car-spec-key">Trans</div></div>
+        <div class="car-spec"><div class="car-spec-val">2024</div><div class="car-spec-key">Year</div></div>
+      </div>
+      <div class="car-actions">
+        <button class="btn-primary" onclick="navigate('contact')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 1.21h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 8.91A16 16 0 0015.1 15.9l.77-.77a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Enquire Now
+        </button>
+        <button class="btn-ghost" onclick="navigate('stock')">Browse All</button>
       </div>
     </div>
 
-    <div class="dashboard-side">
-      <!-- AI Assistant -->
-      <div class="ai-card reveal reveal-d1">
-        <div class="ai-header">
-          <div><div class="ai-title">AI Assistant</div><div class="ai-sub">How can I help you?</div></div>
-          <button class="ai-close" onclick="clearAI()">×</button>
-        </div>
-        <div class="ai-messages" id="aiMessages">
-          <div class="ai-msg bot">Hi! I can help you find the perfect car, book a test drive, or answer questions. What are you looking for?</div>
-        </div>
-        <div class="ai-quick-grid" id="aiQuickGrid">
-          <div class="ai-quick" onclick="aiQuick('Book a rent')"><div class="ai-quick-icon">📅</div><div class="ai-quick-title">Book a rent</div><div class="ai-quick-sub">5 min</div></div>
-          <div class="ai-quick" onclick="aiQuick('Damage Analysis')"><div class="ai-quick-icon">🔍</div><div class="ai-quick-title">Analysis</div><div class="ai-quick-sub">Damages</div></div>
-          <div class="ai-quick" onclick="aiQuick('Insurance options')"><div class="ai-quick-icon">🛡️</div><div class="ai-quick-title">Insurance</div><div class="ai-quick-sub">Pick a Plan</div></div>
-          <div class="ai-quick" onclick="aiQuick('Calculate payment')"><div class="ai-quick-icon">💳</div><div class="ai-quick-title">Payment</div><div class="ai-quick-sub">Calculate</div></div>
-        </div>
-        <div class="ai-input-row">
-          <input class="ai-input" id="aiInput" placeholder="Ask anything about our cars…" onkeydown="if(event.key==='Enter') sendAI()">
-          <div class="ai-input-icons">
-            <button class="ai-icon-btn">🎤</button>
-            <button class="ai-icon-btn">📎</button>
-          </div>
-          <button class="ai-send" onclick="sendAI()">Send <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
-        </div>
-      </div>
-
-      <!-- Location + Date -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-        <div class="loc-card reveal reveal-d2">
-          <div class="loc-header"><div class="loc-title">My Location</div><div class="loc-expand">⤢</div></div>
-          <div class="loc-address">London, E14 5AB</div>
-          <div class="mini-map"><div class="map-grid"></div><div class="map-pin"></div></div>
-        </div>
-        <div class="date-card reveal reveal-d3">
-          <div class="date-header"><div><div class="date-title">My Dates</div><div class="date-sub" id="dateSubtitle">20th Jul · 10:25 AM</div></div><div class="loc-expand">⤢</div></div>
-          <div class="date-display">
-            <div>
-              <div class="date-num">
-                <button class="date-arr" onclick="changeDay(-1)">‹</button>
-                <span id="dateDay">20</span>
-                <button class="date-arr" onclick="changeDay(1)">›</button>
-              </div>
-              <div class="date-month" id="dateMonth">Jul</div>
-            </div>
-            <div class="date-divider"></div>
-            <div>
-              <div class="date-time" id="dateTime">10:25</div>
-              <div class="date-ampm" id="dateAMPM">AM</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Payment -->
-      <div class="pay-card reveal reveal-d3">
-        <div class="pay-header"><div><div class="pay-title">Payment Method</div><div class="pay-sub">Credit Card</div></div><div class="loc-expand">⤢</div></div>
-        <div class="pay-method">
-          <div class="card-icon"></div>
-          <div class="pay-info"><div class="pay-type">Credit Card</div><div class="pay-num">3451 •••• •••• 7896</div></div>
-          <div class="pay-radio"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bottom Stats -->
+    <!-- Stats row -->
     <div class="dashboard-bottom">
       <div class="stat-card reveal"><div class="stat-num accent" id="statCars">0</div><div class="stat-label">Vehicles In-Hand</div></div>
       <div class="stat-card reveal reveal-d1"><div class="stat-num">100%</div><div class="stat-label">Transparent Pricing</div></div>
@@ -761,27 +519,17 @@
     </div>
   </div>
 
-  <!-- CARS SECTION -->
-  <div id="carsSection">
-    <div class="section">
-      <div class="section-head reveal">
-        <p class="section-label">Our Stock</p>
-        <h2 class="section-title">Vehicles Available Now</h2>
-        <p class="section-sub">Every car is personally inspected and ready for immediate purchase.</p>
-      </div>
-      <div class="reveal">
-        <div class="search-wrap">
-          <div class="search-box">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input id="searchInput" placeholder="Search by make, model..." oninput="filterCars()">
-          </div>
-          <select class="filter-sel" id="fuelFilter" onchange="filterCars()"><option value="">All Fuels</option><option>Petrol</option><option>Diesel</option><option>Hybrid</option><option>Electric</option></select>
-          <select class="filter-sel" id="priceFilter" onchange="filterCars()"><option value="">Any Price</option><option value="0-10000">Under £10k</option><option value="10000-20000">£10k–£20k</option><option value="20000-35000">£20k–£35k</option><option value="35000-100000">£35k+</option></select>
-          <button class="sort-btn active" id="sortBtn" onclick="toggleSort()">Price: Low–High</button>
-        </div>
-        <p class="results-count" id="resultsCount"></p>
-      </div>
-      <div class="car-grid reveal" id="carGrid"></div>
+  <!-- VEHICLES AVAILABLE NOW — no search/filter -->
+  <div class="section">
+    <div class="section-head reveal">
+      <p class="section-label">Our Stock</p>
+      <h2 class="section-title">Vehicles Available Now</h2>
+      <p class="section-sub">Every car is personally inspected and ready for immediate purchase.</p>
+    </div>
+    <p class="results-count" id="resultsCount"></p>
+    <div class="car-grid reveal" id="carGrid"></div>
+    <div style="text-align:center;margin-top:24px;">
+      <button class="btn-ghost" onclick="navigate('stock')" style="padding:12px 32px;font-size:14px;">View Full Stock →</button>
     </div>
   </div>
 
@@ -802,6 +550,27 @@
   </div>
 </div>
 
+<!-- ══ OUR STOCK PAGE ══ -->
+<div class="page" id="page-stock">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <h1 class="service-headline" style="margin-top:2%;">Available Vehicles</h1>
+      <p style="font-size:15px;color:var(--text2);margin-top:8px;">Every vehicle is personally inspected and transparently priced.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="car-grid reveal" id="stockCarGrid"></div>
+    <div class="sold-out-section reveal" id="soldOutSection" style="display:none;">
+      <div class="sold-out-header">
+        <h3>Previously Available</h3>
+        <span class="sold-out-badge">Sold Out</span>
+      </div>
+      <p class="sold-out-sub">These vehicles have been sold. Check back for similar listings or contact us to be notified.</p>
+      <div class="car-grid" id="soldOutGrid"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ABOUT PAGE -->
 <div id="page-about" class="page">
   <div class="about-page">
@@ -809,8 +578,6 @@
       <div class="about-headline" style="margin-top: 0;">Driven by passion, powered by people</div>
       <div class="about-desc">We connect drivers with their perfect vehicle, making every journey exceptional from the moment you book.</div>
     </div>
-
-    <!-- Meet The Team -->
     <div class="team-section">
       <div class="section-header">
         <div>
@@ -819,102 +586,27 @@
         </div>
         <a class="view-all-link">View all →</a>
       </div>
-
-      <!-- Featured member -->
       <div class="team-featured" style="margin-bottom:16px;">
-        <div class="team-featured-photo">
-          <div class="team-featured-avatar">S</div>
-        </div>
+        <div class="team-featured-photo"><div class="team-featured-avatar">S</div></div>
         <div class="team-featured-content">
           <div class="team-featured-eyebrow">✦ Founder & CEO</div>
           <div class="team-featured-name">Sarah Mitchell</div>
           <div class="team-featured-role">Chief Executive Officer</div>
           <div class="team-featured-bio">With 15+ years in the automotive industry, Sarah built CarRent from a single car to a fleet of 500+ vehicles. Her vision: make premium car rental accessible to everyone.</div>
           <div class="team-featured-stats">
-            <div class="team-stat">
-              <div class="team-stat-num">500+</div>
-              <div class="team-stat-label">Vehicles managed</div>
-            </div>
-            <div class="team-stat">
-              <div class="team-stat-num">12yrs</div>
-              <div class="team-stat-label">At CarRent</div>
-            </div>
-            <div class="team-stat">
-              <div class="team-stat-num">98%</div>
-              <div class="team-stat-label">Satisfaction rate</div>
-            </div>
+            <div class="team-stat"><div class="team-stat-num">500+</div><div class="team-stat-label">Vehicles managed</div></div>
+            <div class="team-stat"><div class="team-stat-num">12yrs</div><div class="team-stat-label">At CarRent</div></div>
+            <div class="team-stat"><div class="team-stat-num">98%</div><div class="team-stat-label">Satisfaction rate</div></div>
           </div>
         </div>
       </div>
-
-      <!-- Team grid -->
       <div class="team-grid">
-        <div class="team-card">
-          <div class="team-card-photo">
-            <div class="team-avatar-large">J</div>
-            <div class="team-card-overlay"></div>
-            <div class="team-socials">
-              <div class="team-social-btn">in</div>
-              <div class="team-social-btn">𝕏</div>
-              <div class="team-social-btn">@</div>
-            </div>
-          </div>
-          <div class="team-card-info">
-            <div class="team-name">James Okafor</div>
-            <div class="team-role">Head of Operations</div>
-            <div class="team-bio">Keeps every rental running like clockwork. 8 years of logistics expertise across 3 continents.</div>
-            <div class="team-tags"><span class="team-tag">Logistics</span><span class="team-tag">Operations</span><span class="team-tag">LA Office</span></div>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-card-photo">
-            <div class="team-avatar-large">M</div>
-            <div class="team-card-overlay"></div>
-            <div class="team-socials">
-              <div class="team-social-btn">in</div><div class="team-social-btn">𝕏</div><div class="team-social-btn">@</div>
-            </div>
-          </div>
-          <div class="team-card-info">
-            <div class="team-name">Maya Patel</div>
-            <div class="team-role">Lead Designer</div>
-            <div class="team-bio">Creates the seamless experiences you love. Former Google, now shaping how people interact with cars.</div>
-            <div class="team-tags"><span class="team-tag">UX</span><span class="team-tag">Branding</span><span class="team-tag">Product</span></div>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-card-photo">
-            <div class="team-avatar-large">R</div>
-            <div class="team-card-overlay"></div>
-            <div class="team-socials">
-              <div class="team-social-btn">in</div><div class="team-social-btn">𝕏</div><div class="team-social-btn">@</div>
-            </div>
-          </div>
-          <div class="team-card-info">
-            <div class="team-name">Rafael Costa</div>
-            <div class="team-role">Fleet Manager</div>
-            <div class="team-bio">Passionate about cars and sustainability. Transitioning our fleet to 80% electric by 2026.</div>
-            <div class="team-tags"><span class="team-tag">EV</span><span class="team-tag">Fleet</span><span class="team-tag">Sustainability</span></div>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-card-photo">
-            <div class="team-avatar-large">A</div>
-            <div class="team-card-overlay"></div>
-            <div class="team-socials">
-              <div class="team-social-btn">in</div><div class="team-social-btn">𝕏</div><div class="team-social-btn">@</div>
-            </div>
-          </div>
-          <div class="team-card-info">
-            <div class="team-name">Aiko Tanaka</div>
-            <div class="team-role">AI Engineer</div>
-            <div class="team-bio">Built the AI assistant you're chatting with. Stanford CS grad, ML specialist.</div>
-            <div class="team-tags"><span class="team-tag">ML</span><span class="team-tag">AI</span><span class="team-tag">Backend</span></div>
-          </div>
-        </div>
+        <div class="team-card"><div class="team-card-photo"><div class="team-avatar-large">J</div><div class="team-card-overlay"></div><div class="team-socials"><div class="team-social-btn">in</div><div class="team-social-btn">𝕏</div><div class="team-social-btn">@</div></div></div><div class="team-card-info"><div class="team-name">James Okafor</div><div class="team-role">Head of Operations</div><div class="team-bio">Keeps every rental running like clockwork. 8 years of logistics expertise across 3 continents.</div><div class="team-tags"><span class="team-tag">Logistics</span><span class="team-tag">Operations</span><span class="team-tag">LA Office</span></div></div></div>
+        <div class="team-card"><div class="team-card-photo"><div class="team-avatar-large">M</div><div class="team-card-overlay"></div><div class="team-socials"><div class="team-social-btn">in</div><div class="team-social-btn">𝕏</div><div class="team-social-btn">@</div></div></div><div class="team-card-info"><div class="team-name">Maya Patel</div><div class="team-role">Lead Designer</div><div class="team-bio">Creates the seamless experiences you love. Former Google, now shaping how people interact with cars.</div><div class="team-tags"><span class="team-tag">UX</span><span class="team-tag">Branding</span><span class="team-tag">Product</span></div></div></div>
+        <div class="team-card"><div class="team-card-photo"><div class="team-avatar-large">R</div><div class="team-card-overlay"></div><div class="team-socials"><div class="team-social-btn">in</div><div class="team-social-btn">𝕏</div><div class="team-social-btn">@</div></div></div><div class="team-card-info"><div class="team-name">Rafael Costa</div><div class="team-role">Fleet Manager</div><div class="team-bio">Passionate about cars and sustainability. Transitioning our fleet to 80% electric by 2026.</div><div class="team-tags"><span class="team-tag">EV</span><span class="team-tag">Fleet</span><span class="team-tag">Sustainability</span></div></div></div>
+        <div class="team-card"><div class="team-card-photo"><div class="team-avatar-large">A</div><div class="team-card-overlay"></div><div class="team-socials"><div class="team-social-btn">in</div><div class="team-social-btn">𝕏</div><div class="team-social-btn">@</div></div></div><div class="team-card-info"><div class="team-name">Aiko Tanaka</div><div class="team-role">AI Engineer</div><div class="team-bio">Built the AI assistant you're chatting with. Stanford CS grad, ML specialist.</div><div class="team-tags"><span class="team-tag">ML</span><span class="team-tag">AI</span><span class="team-tag">Backend</span></div></div></div>
       </div>
     </div>
-
-    <!-- Values -->
     <div class="values-section">
       <div class="section-title" style="font-size:24px;margin-bottom:4px;">Our values</div>
       <div class="values-grid">
@@ -954,43 +646,30 @@
     </div>
   </div>
   <div class="section">
-    <div class="contact-grid reveal">
-      <div class="contact-info">
-        <h3>Business Details</h3>
-        <div class="contact-detail"><div class="contact-detail-label">Company</div><div class="contact-detail-val">Bro Cars Ltd</div></div>
-        <div class="contact-detail"><div class="contact-detail-label">Address</div><div class="contact-detail-val">14 Motoring Lane, Canary Wharf<br>London, E14 5AB, United Kingdom</div></div>
-        <div class="contact-detail"><div class="contact-detail-label">Phone</div><div class="contact-detail-val"><a href="tel:+442012345678" style="color:inherit;">+44 20 1234 5678</a></div></div>
-        <div class="contact-detail"><div class="contact-detail-label">Email</div><div class="contact-detail-val"><a href="mailto:hello@brocars.co.uk" style="color:inherit;">hello@brocars.co.uk</a></div></div>
-        <div class="contact-detail"><div class="contact-detail-label">WhatsApp</div><div class="contact-detail-val"><a href="https://wa.me/447911123456" target="_blank" style="color:#25d366;">+44 7911 123456</a></div></div>
-        <div class="contact-detail" style="border:none;">
-          <div class="contact-detail-label">Business Hours</div>
-          <div class="hours-grid" style="margin-top:12px;">
-            <div class="hour-row"><div class="hour-day">Monday–Friday</div><div class="hour-time">9:00 – 18:00</div></div>
-            <div class="hour-row"><div class="hour-day">Saturday</div><div class="hour-time">10:00 – 16:00</div></div>
-            <div class="hour-row"><div class="hour-day">Sunday</div><div class="hour-time">Closed</div></div>
-            <div class="hour-row"><div class="hour-day">Bank Holidays</div><div class="hour-time">Closed</div></div>
+    <div class="contact-info-centered reveal">
+      <h3>Business Details</h3>
+      <div class="contact-details-grid">
+        <div>
+          <div class="contact-detail"><div class="contact-detail-label">Company</div><div class="contact-detail-val">Bro Cars Ltd</div></div>
+          <div class="contact-detail"><div class="contact-detail-label">Address</div><div class="contact-detail-val">14 Motoring Lane, Canary Wharf<br>London, E14 5AB, United Kingdom</div></div>
+          <div class="contact-detail"><div class="contact-detail-label">Phone</div><div class="contact-detail-val"><a href="tel:+442012345678" style="color:inherit;">+44 20 1234 5678</a></div></div>
+          <div class="contact-detail"><div class="contact-detail-label">Email</div><div class="contact-detail-val"><a href="mailto:hello@brocars.co.uk" style="color:inherit;">hello@brocars.co.uk</a></div></div>
+          <div class="contact-detail"><div class="contact-detail-label">WhatsApp</div><div class="contact-detail-val"><a href="https://wa.me/447911123456" target="_blank" style="color:#25d366;">+44 7911 123456</a></div></div>
+        </div>
+        <div>
+          <div class="contact-detail" style="border:none;">
+            <div class="contact-detail-label">Business Hours</div>
+            <div class="hours-grid" style="margin-top:12px;">
+              <div class="hour-row"><div class="hour-day">Monday–Friday</div><div class="hour-time">9:00 – 18:00</div></div>
+              <div class="hour-row"><div class="hour-day">Saturday</div><div class="hour-time">10:00 – 16:00</div></div>
+              <div class="hour-row"><div class="hour-day">Sunday</div><div class="hour-time">Closed</div></div>
+              <div class="hour-row"><div class="hour-day">Bank Holidays</div><div class="hour-time">Closed</div></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="contact-form">
-        <h3>Send an Enquiry</h3>
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">First Name</label><input class="form-input" id="c-fname" placeholder="John"></div>
-          <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" id="c-lname" placeholder="Smith"></div>
-        </div>
-        <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="c-email" type="email" placeholder="john@example.com"></div>
-        <div class="form-group"><label class="form-label">Phone (optional)</label><input class="form-input" id="c-phone" placeholder="+44..."></div>
-        <div class="form-group"><label class="form-label">Subject</label>
-          <select class="form-select" id="c-subject"><option>Vehicle Enquiry</option><option>Part Exchange / Selling a Car</option><option>Vehicle Inspection Request</option><option>Pricing Evaluation</option><option>General Question</option></select>
-        </div>
-        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" id="c-msg" placeholder="Tell us how we can help..."></textarea></div>
-        <button class="btn-primary" onclick="submitContact()" style="width:100%;justify-content:center;">Send Enquiry</button>
-        <div class="form-success" id="formSuccess">✓ Thank you! We'll get back to you within a few hours.</div>
-      </div>
     </div>
-
-    <!-- Google Map -->
-    <div style="margin-top:48px;" class="reveal">
+    <div style="margin-top:36px;" class="reveal">
       <p class="section-label" style="margin-bottom:12px;">Find Us</p>
       <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:16px;">14 Motoring Lane, Canary Wharf, London E14 5AB</h3>
       <div class="map-embed">
@@ -1005,13 +684,14 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-logo"><img src="logo.png" alt="logo" ></div>
+        <div class="footer-logo"><img src="logo.png" alt="logo"></div>
         <p>Premium pre-owned vehicles, transparently priced and personally inspected. Serving customers across the UK since 2025.</p>
       </div>
       <div class="footer-col">
         <h4>Navigate</h4>
         <ul>
           <li><a href="#" onclick="navigate('home');return false;">Home & Stock</a></li>
+          <li><a href="#" onclick="navigate('stock');return false;">Our Stock</a></li>
           <li><a href="#" onclick="navigate('about');return false;">About Us</a></li>
           <li><a href="#" onclick="navigate('services');return false;">Services</a></li>
           <li><a href="#" onclick="navigate('contact');return false;">Contact</a></li>
@@ -1040,7 +720,7 @@
   <span>Chat with us</span>
 </a>
 
-<!-- CAR MODAL -->
+<!-- CAR MODAL — finance calculator removed -->
 <div class="modal-overlay" id="carModal" onclick="closeModal(event)">
   <div class="modal">
     <div class="modal-header">
@@ -1049,55 +729,114 @@
     </div>
     <div class="modal-body">
       <img class="modal-img" id="modalImg" src="" alt="">
+      <div class="modal-gallery" id="modalGallery"></div>
       <div class="modal-grid" id="modalSpecs"></div>
       <div class="modal-price" id="modalPrice"></div>
       <p class="modal-desc" id="modalDesc"></p>
-      <div class="modal-actions">
+      <div class="modal-actions" id="modalActions">
         <button class="btn-primary" onclick="enquireWhatsApp()">Enquire via WhatsApp</button>
         <button class="btn-ghost" onclick="navigate('contact');closeModalDirect()">Send Enquiry</button>
-      </div>
-      <div class="finance-calc">
-        <div class="finance-calc-title"><span>💰</span> Finance Calculator</div>
-        <div class="calc-grid">
-          <div class="calc-field"><label class="calc-label">Vehicle Price (£)</label><input class="calc-input" id="calcPrice" type="number" placeholder="25000" oninput="updateCalcPrice()"></div>
-          <div class="calc-field"><label class="calc-label">Deposit (£)</label><input class="calc-input" id="calcDeposit" type="number" placeholder="3000" value="3000"></div>
-          <div class="calc-field"><label class="calc-label">Loan Term (months)</label><input class="calc-input" id="calcTerm" type="range" min="12" max="60" step="12" value="36" oninput="updateTermLabel(this.value)" style="height:auto;padding:8px 0;"><small style="color:var(--text3);font-size:11px;" id="termLabel">36 months</small></div>
-          <div class="calc-field"><label class="calc-label">Annual Interest Rate (%)</label><input class="calc-input" id="calcRate" type="number" value="6.9" step="0.1" min="0" max="30"></div>
-        </div>
-        <button class="calc-btn" onclick="calculateFinance()">Calculate Monthly Payment</button>
-        <div class="calc-result" id="calcResult">
-          <div class="calc-result-row"><span class="calc-result-label">Vehicle Price</span><span class="calc-result-val" id="rPrice">-</span></div>
-          <div class="calc-result-row"><span class="calc-result-label">Deposit</span><span class="calc-result-val" id="rDeposit">-</span></div>
-          <div class="calc-result-row"><span class="calc-result-label">Amount Financed</span><span class="calc-result-val" id="rFinanced">-</span></div>
-          <div class="calc-result-row"><span class="calc-result-label">Interest Rate (APR)</span><span class="calc-result-val" id="rRate">-</span></div>
-          <div class="calc-result-row"><span class="calc-result-label">Loan Term</span><span class="calc-result-val" id="rTerm">-</span></div>
-          <div class="calc-result-row"><span class="calc-result-label">Total Amount Payable</span><span class="calc-result-val" id="rTotal">-</span></div>
-          <div class="calc-result-row" style="padding-top:12px;border-top:2px solid var(--border);margin-top:4px;"><span class="calc-result-label" style="font-weight:700;color:var(--text);">Monthly Payment</span><span class="calc-monthly" id="rMonthly">-</span></div>
-          <p class="calc-note">* Representative example only. Subject to status and approval. Finance provided by approved lenders.</p>
-        </div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+// ─── DATA ───
 let cars = [
-  { id:1, make:'BMW', name:'3 Series 2022', price:24995, mileage:'28,000 miles', fuel:'Petrol', trans:'Automatic', img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80', desc:'Stunning BMW 3 Series in Alpine White. Full BMW service history, heated seats, iDrive infotainment, reversing camera. HPI clear.' },
-  { id:2, make:'Tesla', name:'Model 3 2023', price:32500, mileage:'12,000 miles', fuel:'Electric', trans:'Automatic', img:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80', desc:'Tesla Model 3 Long Range in Pearl White. Autopilot, glass roof, 15" touchscreen, OTA updates. Range: 358 miles.' },
-  { id:3, make:'Mercedes', name:'C-Class 2021', price:27500, mileage:'35,000 miles', fuel:'Diesel', trans:'Automatic', img:'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80', desc:'Elegant Mercedes-Benz C-Class in Obsidian Black. MBUX infotainment, leather interior, panoramic sunroof, AMG styling pack.' },
-  { id:4, make:'Audi', name:'A4 2022', price:29995, mileage:'21,000 miles', fuel:'Petrol', trans:'Automatic', img:'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&q=80', desc:'Audi A4 S Line in Navarra Blue Metallic. Virtual cockpit, B&O sound system, adaptive cruise control, lane assist.' },
-  { id:5, make:'Volkswagen', name:'Golf GTI 2022', price:19995, mileage:'18,500 miles', fuel:'Petrol', trans:'Manual', img:'Volkswagen Golf GTI Clubsport 2021.jpg', desc:'VW Golf GTI in Deep Black Pearl. 245bhp, performance pack, DCC suspension, 18" Richmond alloys. One previous owner.' },
-  { id:6, make:'Porsche', name:'Macan 2021', price:44500, mileage:'29,000 miles', fuel:'Petrol', trans:'Automatic', img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80', desc:'Porsche Macan S in Mahogany Metallic. Sport Chrono package, BOSE audio, panoramic roof. Porsche-approved used vehicle.' },
+  { id:1, make:'', name:'Peugeot', price:24995, mileage:'28,000 miles', fuel:'Petrol', trans:'Automatic', images:['stock1.1.jpeg','stock1.2.jpeg','stock1.3.jpeg','stock1.4.jpeg','stock1.5.jpeg','stock1.6.jpeg','stock1.7.jpeg','stock1.8.jpeg','stock1.9.jpeg'], desc:'Stunning BMW 3 Series in Alpine White. Full BMW service history, heated seats, iDrive infotainment, reversing camera. HPI clear.' },
 ];
-let sortAsc = true;
+
+let soldOutCars = [
+  { id:101, make:'Ford', name:'Mercedes-Benz A-Class hatchback', price:38500, mileage:'22,000 miles', fuel:'Petrol', trans:'Manual', soldOut:true, images:['sold1.jpeg'], desc:'Ford Mustang GT 5.0 in Race Red. Performance exhaust, Recaro seats, 19" alloys. Sold to a very happy customer.' },
+  { id:102, make:'Range Rover', name:'Sport 2019', price:52000, mileage:'41,000 miles', fuel:'Diesel', trans:'Automatic', soldOut:true, images:['sold2.jpeg'], desc:'Range Rover Sport HSE Dynamic in Santorini Black. Panoramic roof, heated seats all round, 21" alloys. Full LRSH.' },
+  { id:103, make:'BMW', name:'X5 2020', price:48000, mileage:'32,000 miles', fuel:'Diesel', trans:'Automatic', soldOut:true, images:['sold3.jpeg'], desc:'BMW X5 xDrive40d in Mineral White. Adaptive headlights, panoramic sunroof, 21" alloys. Full service history.' },
+  { id:104, make:'Lamborghini', name:'Aventador 2021', price:400000, mileage:'5,000 miles', fuel:'Petrol', trans:'Automatic', soldOut:true, images:['sold4.jpeg'], desc:'Lamborghini Aventador SVJ in Venetian Red. Lightweight construction, hybrid powertrain, limited edition. Sold to a very happy customer.' }
+];
+
+function findCar(id) {
+  const n = Number(id);
+  return cars.find(x => x.id === n) || soldOutCars.find(x => x.id === n) || null;
+}
+function carImg(c) { return (c.images && c.images.length) ? c.images[0] : (c.img || ''); }
+
+// ─── SLIDER ───
+const sliderState = {};
+
+function buildCarCard(c) {
+  const imgs = (c.images && c.images.length) ? c.images : (c.img ? [c.img] : []);
+  const hasMultiple = imgs.length > 1;
+  const slidesHtml = imgs.map(src => `<div class="card-slide"><img src="${src}" alt="${c.make} ${c.name}" onerror="this.parentElement.style.display='none'" draggable="false"></div>`).join('');
+  const dotsHtml = hasMultiple ? `<div class="slider-dots" id="dots-${c.id}">${imgs.map((_,i) => `<button class="slider-dot ${i===0?'active':''}" onclick="event.stopPropagation();goToSlide(${c.id},${i})"></button>`).join('')}</div>` : '';
+  const arrowsHtml = hasMultiple ? `<button class="slider-arrow prev" onclick="event.stopPropagation();slideCard(${c.id},-1)">&#8249;</button><button class="slider-arrow next" onclick="event.stopPropagation();slideCard(${c.id},1)">&#8250;</button>` : '';
+  const countBadge = hasMultiple ? `<div class="img-count-badge">📷 ${imgs.length}</div>` : '';
+  const imgSection = imgs.length
+    ? `<div class="card-slider" id="slider-${c.id}" data-car-id="${c.id}"><div class="card-slider-track" id="track-${c.id}">${slidesHtml}</div>${arrowsHtml}${dotsHtml}${countBadge}</div>`
+    : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;background:var(--bg2);">🚗</div>`;
+  return `
+    <div class="car-card" onclick="openModal(${c.id})">
+      <div class="car-card-img"><span style="position:absolute;top:10px;left:10px;background:#16a34a;color:#fff;border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;z-index:5;letter-spacing:0.3px;box-shadow:0 2px 8px rgba(22,163,74,0.25);">Available</span>
+        ${imgSection}
+        <div class="car-card-make">${c.make}</div>
+        <div class="car-card-name">${c.name}</div>
+        <div class="car-card-specs"><span class="car-spec-pill">📍 ${c.mileage||'N/A'}</span><span class="car-spec-pill">⚙️ ${c.trans}</span></div>
+        <div class="car-card-footer"><div class="car-card-price">£${Number(c.price).toLocaleString()}</div><button class="car-card-btn">View Details</button></div>
+      </div>
+    </div>`;
+}
+
+function slideCard(carId, dir) {
+  const c = findCar(carId); if (!c) return;
+  const imgs = c.images || []; if (imgs.length <= 1) return;
+  if (!sliderState[carId]) sliderState[carId] = { index: 0 };
+  sliderState[carId].index = (sliderState[carId].index + dir + imgs.length) % imgs.length;
+  applySlide(carId, sliderState[carId].index);
+}
+function goToSlide(carId, index) {
+  if (!sliderState[carId]) sliderState[carId] = { index: 0 };
+  sliderState[carId].index = index;
+  applySlide(carId, index);
+}
+function applySlide(carId, index) {
+  const track = document.getElementById('track-' + carId);
+  if (track) track.style.transform = `translateX(-${index * 100}%)`;
+  const dots = document.getElementById('dots-' + carId);
+  if (dots) dots.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === index));
+  const c = findCar(carId);
+  if (c && c.images && c.images.length > 1) {
+    const s = document.getElementById('slider-' + carId);
+    if (s) { const b = s.querySelector('.img-count-badge'); if (b) b.innerHTML = `📷 ${index + 1}/${c.images.length}`; }
+  }
+}
+function initSlidersInContainer(container) {
+  if (!container) return;
+  container.querySelectorAll('.card-slider').forEach(slider => {
+    if (slider.dataset.touchInit) return;
+    slider.dataset.touchInit = '1';
+    const carId = parseInt(slider.dataset.carId); if (!carId) return;
+    let sx = 0, sy = 0, drag = false, horiz = null;
+    slider.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; drag = true; horiz = null; }, { passive: true });
+    slider.addEventListener('touchmove', e => {
+      if (!drag) return;
+      const dx = e.touches[0].clientX - sx, dy = e.touches[0].clientY - sy;
+      if (horiz === null) horiz = Math.abs(dx) > Math.abs(dy);
+      if (horiz) e.preventDefault();
+    }, { passive: false });
+    slider.addEventListener('touchend', e => {
+      if (!drag || horiz === null) return; drag = false;
+      const dx = e.changedTouches[0].clientX - sx;
+      if (horiz && Math.abs(dx) > 40) slideCard(carId, dx < 0 ? 1 : -1);
+      horiz = null;
+    }, { passive: true });
+  });
+}
+
 let showcaseIndex = 0;
-let dateDay = 20, dateMonthIdx = 6;
-const dateMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const showcaseCars = [
-  { name:'Volvo EX30', subtitle:'Fully electric crossover · 2024', price:'£28,995', img:'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80', specs:{miles:'12k',fuel:'Electric',trans:'Auto',year:'2024'} },
-  { name:'BMW M4', subtitle:'Competition coupe · 2023', price:'£67,500', img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80', specs:{miles:'8k',fuel:'Petrol',trans:'Auto',year:'2023'} },
-  { name:'Tesla Model S', subtitle:'Long range electric · 2023', price:'£74,990', img:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80', specs:{miles:'5k',fuel:'Electric',trans:'Auto',year:'2023'} },
-  { name:'Porsche Taycan', subtitle:'Sport saloon EV · 2022', price:'£82,000', img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80', specs:{miles:'18k',fuel:'Electric',trans:'Auto',year:'2022'} },
+  { name:'Volvo EX30', subtitle:'Fully electric crossover · 2024', price:'£28,995', img:'car2.jpg', specs:{miles:'12k',fuel:'Electric',trans:'Auto',year:'2024'} },
+  { name:'BMW M4', subtitle:'Competition coupe · 2023', price:'£67,500', img:'car4.jpg', specs:{miles:'8k',fuel:'Petrol',trans:'Auto',year:'2023'} },
+  // { name:'Tesla Model S', subtitle:'Long range electric · 2023', price:'£74,990', img:'car3.jpg', specs:{miles:'5k',fuel:'Electric',trans:'Auto',year:'2023'} },
+  // { name:'Porsche Taycan', subtitle:'Sport saloon EV · 2022', price:'£82,000', img:'car4.jpg', specs:{miles:'18k',fuel:'Electric',trans:'Auto',year:'2022'} },
 ];
 
 function navigate(page) {
@@ -1107,71 +846,68 @@ function navigate(page) {
   const nl = document.getElementById('nl-' + page);
   if (nl) nl.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (page === 'stock') renderStockCars();
 }
 function toggleTheme() {
   const dark = document.documentElement.getAttribute('data-theme') === 'dark';
   document.documentElement.setAttribute('data-theme', dark ? '' : 'dark');
   document.querySelector('.nav-right .nav-btn').textContent = dark ? 'Dark Mode' : 'Light Mode';
 }
-function setMode(mode) {
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + mode).classList.add('active');
-  const mobTab = document.getElementById('mob-tab-' + mode);
-  if (mobTab) mobTab.classList.add('active');
-  if (mode === 'buy') document.getElementById('carsSection').scrollIntoView({ behavior: 'smooth' });
-}
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
 function renderCars() {
-  const q = document.getElementById('searchInput').value.toLowerCase();
-  const fuel = document.getElementById('fuelFilter').value;
-  const pr = document.getElementById('priceFilter').value;
-  let f = cars.filter(c => {
-    const m = (c.make + ' ' + c.name).toLowerCase().includes(q);
-    const fm = !fuel || c.fuel === fuel;
-    let pm = true;
-    if (pr) { const [lo,hi] = pr.split('-').map(Number); pm = c.price >= lo && c.price <= hi; }
-    return m && fm && pm;
-  });
-  f.sort((a,b) => sortAsc ? a.price - b.price : b.price - a.price);
-  document.getElementById('resultsCount').textContent = f.length + ' vehicle' + (f.length!==1?'s':'') + ' found';
+  let f = [...cars].sort((a,b) => a.price - b.price);
+  document.getElementById('resultsCount').textContent = f.length + ' vehicle' + (f.length!==1?'s':'') + ' available';
   const g = document.getElementById('carGrid');
-  if (!f.length) { g.innerHTML = '<div class="car-empty"><div style="font-size:48px">🔍</div><p>No vehicles match your search.</p></div>'; return; }
-  g.innerHTML = f.map(c => `
-    <div class="car-card" onclick="openModal(${c.id})">
-      <div class="car-card-img">
-        ${c.img ? `<img src="${c.img}" alt="${c.make} ${c.name}" onerror="this.style.display='none'">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;">🚗</div>'}
-        <div class="car-card-badge">${c.fuel}</div>
-      </div>
-      <div class="car-card-body">
-        <div class="car-card-make">${c.make}</div>
-        <div class="car-card-name">${c.name}</div>
-        <div class="car-card-specs"><span class="car-spec-pill">📍 ${c.mileage||'N/A'}</span><span class="car-spec-pill">⚙️ ${c.trans}</span></div>
-        <div class="car-card-footer"><div class="car-card-price">£${Number(c.price).toLocaleString()}</div><button class="car-card-btn">View Details</button></div>
-      </div>
-    </div>`).join('');
+  if (!f.length) { g.innerHTML = '<div class="car-empty"><div style="font-size:48px">🔍</div><p>No vehicles available at this time.</p></div>'; return; }
+  g.innerHTML = f.map(c => buildCarCard(c)).join('');
+  initSlidersInContainer(g);
 }
-function filterCars() { renderCars(); }
-function toggleSort() { sortAsc = !sortAsc; document.getElementById('sortBtn').textContent = sortAsc ? 'Price: Low–High' : 'Price: High–Low'; renderCars(); }
+
+function renderStockCars() {
+  let f = [...cars].sort((a,b) => a.price - b.price);
+  const g = document.getElementById('stockCarGrid');
+  if (!f.length) { g.innerHTML = '<div class="car-empty"><div style="font-size:48px">🔍</div><p>No vehicles available at this time.</p></div>'; return; }
+  g.innerHTML = f.map(c => buildCarCard(c)).join('');
+  initSlidersInContainer(g);
+  renderSoldOutCars();
+}
+
+function renderSoldOutCars() {
+  const section = document.getElementById('soldOutSection');
+  const grid = document.getElementById('soldOutGrid');
+  if (!soldOutCars.length) { section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  grid.innerHTML = soldOutCars.map(c => {
+    const img = carImg(c);
+    return `<div class="car-card sold-out"><div class="car-card-img">${img ? `<img src="${img}" alt="${c.make} ${c.name}" onerror="this.style.display='none'">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;background:var(--bg2);" class="no-img-placeholder">🚗</div>'}<div class="car-card-badge">${c.fuel}</div><div class="sold-out-overlay"><div class="sold-out-stamp">SOLD</div></div></div><div class="car-card-body"><div class="car-card-make">${c.make}</div><div class="car-card-name">${c.name}</div><div class="car-card-specs"><span class="car-spec-pill">📍 ${c.mileage||'N/A'}</span><span class="car-spec-pill">⚙️ ${c.trans}</span></div><div class="car-card-footer"><div class="car-card-price">£${Number(c.price).toLocaleString()}</div><button class="car-card-btn" disabled>Sold Out</button></div></div></div>`;
+  }).join('');
+}
 
 let currentModalCar = null;
 function openModal(id) {
-  const c = cars.find(x => x.id === id);
-  if (!c) return;
+  const c = findCar(id); if (!c) return;
   currentModalCar = c;
   document.getElementById('modalTitle').textContent = c.make + ' ' + c.name;
-  document.getElementById('modalImg').src = c.img || '';
-  document.getElementById('modalImg').style.display = c.img ? 'block' : 'none';
+  const imgs = c.images && c.images.length ? c.images : (c.img ? [c.img] : []);
+  const mainImg = document.getElementById('modalImg');
+  mainImg.src = imgs[0] || ''; mainImg.style.display = imgs[0] ? 'block' : 'none';
+  const gallery = document.getElementById('modalGallery');
+  if (imgs.length > 1) {
+    gallery.innerHTML = imgs.map((src, i) => `<div class="modal-gallery-thumb ${i===0?'active':''}" onclick="switchModalImg('${src}', this)"><img src="${src}" alt="Photo ${i+1}"></div>`).join('');
+    gallery.style.display = 'flex';
+  } else { gallery.innerHTML = ''; gallery.style.display = 'none'; }
   document.getElementById('modalPrice').textContent = '£' + Number(c.price).toLocaleString();
   document.getElementById('modalDesc').textContent = c.desc || '';
-  document.getElementById('modalSpecs').innerHTML = [
-    {k:'Mileage',v:c.mileage||'N/A'},{k:'Fuel',v:c.fuel},{k:'Transmission',v:c.trans},{k:'Make',v:c.make}
-  ].map(s => `<div class="modal-spec"><div class="modal-spec-val">${s.v}</div><div class="modal-spec-key">${s.k}</div></div>`).join('');
-  document.getElementById('calcPrice').value = c.price;
-  document.getElementById('calcDeposit').value = Math.round(c.price * 0.1);
-  document.getElementById('calcResult').classList.remove('show');
+  document.getElementById('modalSpecs').innerHTML = [{k:'Mileage',v:c.mileage||'N/A'},{k:'Fuel',v:c.fuel},{k:'Transmission',v:c.trans},{k:'Make',v:c.make}].map(s => `<div class="modal-spec"><div class="modal-spec-val">${s.v}</div><div class="modal-spec-key">${s.k}</div></div>`).join('');
+  document.getElementById('modalActions').innerHTML = `<button class="btn-primary" onclick="enquireWhatsApp()">Enquire via WhatsApp</button><button class="btn-ghost" onclick="navigate('contact');closeModalDirect()">Send Enquiry</button>`;
   document.getElementById('carModal').classList.add('active');
   document.body.style.overflow = 'hidden';
+}
+function switchModalImg(src, el) {
+  document.getElementById('modalImg').src = src;
+  document.querySelectorAll('.modal-gallery-thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
 }
 function closeModal(e) { if (e.target === document.getElementById('carModal')) closeModalDirect(); }
 function closeModalDirect() { document.getElementById('carModal').classList.remove('active'); document.body.style.overflow = ''; }
@@ -1179,32 +915,6 @@ function enquireWhatsApp() {
   if (!currentModalCar) return;
   const msg = encodeURIComponent(`Hi Bro Cars! I'm interested in the ${currentModalCar.make} ${currentModalCar.name} priced at £${Number(currentModalCar.price).toLocaleString()}. Could you provide more information?`);
   window.open('https://wa.me/447911123456?text=' + msg, '_blank');
-}
-
-function updateTermLabel(v) { document.getElementById('termLabel').textContent = v + ' months'; }
-function updateCalcPrice() {}
-function calculateFinance() {
-  const price = parseFloat(document.getElementById('calcPrice').value) || 0;
-  const deposit = parseFloat(document.getElementById('calcDeposit').value) || 0;
-  const term = parseInt(document.getElementById('calcTerm').value) || 36;
-  const annualRate = parseFloat(document.getElementById('calcRate').value) || 6.9;
-  if (price <= 0) { alert('Please enter a valid vehicle price.'); return; }
-  const financed = price - deposit;
-  if (financed <= 0) { alert('Deposit cannot exceed the vehicle price.'); return; }
-  const monthlyRate = annualRate / 100 / 12;
-  let monthly;
-  if (monthlyRate === 0) { monthly = financed / term; }
-  else { monthly = financed * (monthlyRate * Math.pow(1 + monthlyRate, term)) / (Math.pow(1 + monthlyRate, term) - 1); }
-  const total = monthly * term + deposit;
-  const fmt = n => '£' + n.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2});
-  document.getElementById('rPrice').textContent = fmt(price);
-  document.getElementById('rDeposit').textContent = fmt(deposit);
-  document.getElementById('rFinanced').textContent = fmt(financed);
-  document.getElementById('rRate').textContent = annualRate.toFixed(1) + '% APR';
-  document.getElementById('rTerm').textContent = term + ' months';
-  document.getElementById('rTotal').textContent = fmt(total);
-  document.getElementById('rMonthly').textContent = fmt(monthly);
-  document.getElementById('calcResult').classList.add('show');
 }
 
 function updateShowcase() {
@@ -1215,89 +925,21 @@ function updateShowcase() {
   const img = document.getElementById('showcaseImg');
   img.style.opacity = '0'; img.style.transform = 'translateX(20px)';
   setTimeout(() => { img.src = c.img; img.style.transition = 'opacity 0.4s, transform 0.4s'; img.style.opacity = '1'; img.style.transform = 'translateX(0)'; }, 100);
-  document.getElementById('showcaseSpecs').innerHTML = `
-    <div class="car-spec"><div class="car-spec-val">${c.specs.miles}</div><div class="car-spec-key">Miles</div></div>
-    <div class="car-spec"><div class="car-spec-val">${c.specs.fuel}</div><div class="car-spec-key">Fuel</div></div>
-    <div class="car-spec"><div class="car-spec-val">${c.specs.trans}</div><div class="car-spec-key">Trans</div></div>
-    <div class="car-spec"><div class="car-spec-val">${c.specs.year}</div><div class="car-spec-key">Year</div></div>`;
+  document.getElementById('showcaseSpecs').innerHTML = `<div class="car-spec"><div class="car-spec-val">${c.specs.miles}</div><div class="car-spec-key">Miles</div></div><div class="car-spec"><div class="car-spec-val">${c.specs.fuel}</div><div class="car-spec-key">Fuel</div></div><div class="car-spec"><div class="car-spec-val">${c.specs.trans}</div><div class="car-spec-key">Trans</div></div><div class="car-spec"><div class="car-spec-val">${c.specs.year}</div><div class="car-spec-key">Year</div></div>`;
 }
 function prevCar() { showcaseIndex = (showcaseIndex - 1 + showcaseCars.length) % showcaseCars.length; updateShowcase(); }
 function nextCar() { showcaseIndex = (showcaseIndex + 1) % showcaseCars.length; updateShowcase(); }
-
-function changeDay(d) {
-  const m=[31,28,31,30,31,30,31,31,30,31,30,31];
-  dateDay += d;
-  if (dateDay < 1) { dateMonthIdx=(dateMonthIdx-1+12)%12; dateDay=m[dateMonthIdx]; }
-  if (dateDay > m[dateMonthIdx]) { dateMonthIdx=(dateMonthIdx+1)%12; dateDay=1; }
-  document.getElementById('dateDay').textContent = dateDay;
-  document.getElementById('dateMonth').textContent = dateMonths[dateMonthIdx];
-  document.getElementById('dateSubtitle').textContent = dateDay + ' ' + dateMonths[dateMonthIdx] + ' · 10:25 AM';
-}
-
-const aiReplies = {
-  'Book a rent': "Sure! I can help you book. Which car interests you? We have the Volvo EX30, BMW M4, Tesla Model S, and more available.",
-  'Damage Analysis': "Upload photos and I'll help assess the vehicle's condition. Alternatively, book an independent inspection for £99.",
-  'Insurance options': "We work with three trusted insurance partners. Bronze from £45/month, Silver from £79/month, or Gold comprehensive from £120/month.",
-  'Calculate payment': "Happy to help! Open any car listing and use the Finance Calculator widget to get your exact monthly payment.",
-};
-function aiQuick(title) {
-  const msgs = document.getElementById('aiMessages');
-  msgs.innerHTML += `<div class="ai-msg user">${title}</div>`;
-  setTimeout(() => { msgs.innerHTML += `<div class="ai-msg bot">${aiReplies[title]||"Great choice! Let me look into that for you."}</div>`; msgs.scrollTop = msgs.scrollHeight; }, 600);
-  msgs.scrollTop = msgs.scrollHeight;
-  document.getElementById('aiQuickGrid').style.display = 'none';
-}
-function sendAI() {
-  const inp = document.getElementById('aiInput');
-  const text = inp.value.trim(); if (!text) return;
-  const msgs = document.getElementById('aiMessages');
-  msgs.innerHTML += `<div class="ai-msg user">${text}</div>`;
-  inp.value = ''; msgs.scrollTop = msgs.scrollHeight;
-  document.getElementById('aiQuickGrid').style.display = 'none';
-  setTimeout(() => {
-    const lc = text.toLowerCase();
-    let r = "Thanks! Our team will get back to you shortly. You can also reach us on WhatsApp for a faster response.";
-    if (lc.includes('rent')||lc.includes('hire')) r = "I'd be happy to help with a rental! Tell me your preferred dates and I'll check availability.";
-    else if (lc.includes('price')||lc.includes('cost')||lc.includes('how much')) r = "Our vehicles range from £8,000 to £85,000+. All prices are transparent with no hidden fees. Which vehicle interests you?";
-    else if (lc.includes('inspect')) r = "Our 150-point inspection covers mechanical, bodywork, electrics, tyres, and history. Reports within 48 hours for £99.";
-    else if (lc.includes('deliver')) r = "Yes! Nationwide delivery across the UK, typically within 3–5 working days. London often next-day.";
-    else if (lc.includes('finance')) r = "Open any car listing and click 'View Details' to access the built-in Finance Calculator for instant monthly payment estimates.";
-    msgs.innerHTML += `<div class="ai-msg bot">${r}</div>`; msgs.scrollTop = msgs.scrollHeight;
-  }, 800);
-}
-function clearAI() {
-  document.getElementById('aiMessages').innerHTML = '<div class="ai-msg bot">Hi! I can help you find the perfect car, book a test drive, or answer questions. What are you looking for?</div>';
-  document.getElementById('aiQuickGrid').style.display = 'grid';
-}
-
-function submitContact() {
-  if (!document.getElementById('c-fname').value.trim() || !document.getElementById('c-email').value.trim() || !document.getElementById('c-msg').value.trim()) { alert('Please fill in your name, email, and message.'); return; }
-  document.getElementById('formSuccess').style.display = 'block';
-  ['c-fname','c-lname','c-email','c-phone','c-msg'].forEach(id => document.getElementById(id).value = '');
-  setTimeout(() => document.getElementById('formSuccess').style.display = 'none', 5000);
-}
 
 function animateCount(el, target) {
   let c = 0; const step = Math.ceil(target/30);
   const iv = setInterval(() => { c = Math.min(c+step, target); el.textContent = c; if(c>=target) clearInterval(iv); }, 40);
 }
 
-function updateClock() {
-  const now = new Date();
-  const h = now.getHours(), m = String(now.getMinutes()).padStart(2,'0');
-  const ampm = h>=12?'PM':'AM', h12 = h%12||12;
-  const t = document.getElementById('dateTime'), a = document.getElementById('dateAMPM');
-  if(t) t.textContent = h12+':'+m;
-  if(a) a.textContent = ampm;
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   renderCars();
   setTimeout(() => animateCount(document.getElementById('statCars'), cars.length), 400);
-  updateClock();
-  setInterval(updateClock, 30000);
   updateShowcase();
-  updateTermLabel(36);
+  initSlidersInContainer(document.getElementById('carGrid'));
 });
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModalDirect(); });
 </script>
